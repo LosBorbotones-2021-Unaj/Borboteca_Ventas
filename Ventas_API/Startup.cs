@@ -8,11 +8,20 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SqlKata.Compilers;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Ventas_AccessData;
+using Ventas_AccessData.Commands;
+using Ventas_AccessData.Queries;
+using Ventas_Application.Services;
+using Ventas_Application.Services.Interface_Service;
+using Ventas_Domain.Commands;
+using Ventas_Domain.Queries;
 
 namespace Ventas_API
 {
@@ -31,7 +40,24 @@ namespace Ventas_API
 
             services.AddControllers();
             var connectionString = Configuration.GetSection("connectionString").Value;
+           
             services.AddDbContext<VentasContext>(options => options.UseSqlServer(connectionString));
+            services.AddTransient<IGenericRepository, GenericRepository>();
+            services.AddTransient<ICarroLibroQuery, CarroLibroQuery>();
+            services.AddTransient<ICarroQuery, CarroQuery>();
+            services.AddTransient<IVentasQuery, VentasQuery>();
+            services.AddTransient<IVentasService, VentasService>();
+            services.AddTransient<ICarroLibroService, CarroLibroService>();
+            services.AddTransient<ICarroService, CarroService>();
+
+            //SKL KATA
+            services.AddTransient<Compiler, SqlServerCompiler>();
+            services.AddTransient<IDbConnection>(b =>
+            {
+                return new SqlConnection(connectionString);
+            });
+
+            //SWAGER
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Borboteca_Libros", Version = "v1" });

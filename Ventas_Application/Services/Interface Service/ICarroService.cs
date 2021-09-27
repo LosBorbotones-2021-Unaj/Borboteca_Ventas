@@ -8,6 +8,7 @@ namespace Ventas_Application.Services.Interface_Service
 {
     public interface ICarroService
     {
+        List<ResponseAllCarros> GetAllCarros();
         GenericCreatedDto CreateCarro(RequestCarro carro);
     }
 }

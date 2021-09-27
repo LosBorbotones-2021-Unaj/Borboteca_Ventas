@@ -20,11 +20,8 @@ namespace Ventas_Application.Services
             query = _query;
         }
 
-        
-
         public List<ResponseAllVentas> GetAllVentas()
         {
-
              List<ResponseAllVentas> ListaVentasResponse=new List<ResponseAllVentas>();
              var ListaVentas = query.GetAllVentasQuery();
             foreach(var Venta in ListaVentas)
@@ -58,7 +55,7 @@ namespace Ventas_Application.Services
 
         public GenericCreatedDto CreateVenta(RequestVenta venta)
         {
-            string[] FechaString = venta.Fecha.Split('-');
+            string[] FechaString = venta.Fecha.Split('-'); //Se podría cambiar a /
             DateTime FechaDatetime = new DateTime(int.Parse(FechaString[0]), int.Parse(FechaString[1]), int.Parse(FechaString[2]));
 
             var entity = new Ventas

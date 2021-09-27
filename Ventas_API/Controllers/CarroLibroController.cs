@@ -47,6 +47,7 @@ namespace Ventas_API.Controllers
             }
         }
 
+        
         // POST api/<CarroLibroController>
         [HttpPost]
         public IActionResult Post(RequestCarroLibro Carro)
@@ -71,6 +72,14 @@ namespace Ventas_API.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            try
+            {
+                service.DeleteCarroLibro(id);
+            }
+            catch (Exception e)
+            {
+                BadRequest(e.Message);
+            }
         }
     }
 }

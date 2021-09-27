@@ -8,7 +8,10 @@ namespace Ventas_Application.Services.Interface_Service
 {
     public interface ICarroService
     {
+        void CreateCarro(int UsuarioId);
         List<ResponseAllCarros> GetAllCarros();
-        GenericCreatedDto CreateCarro(RequestCarro carro);
+        ResponseCarroCompleto GetCarroCompleto(int Usuarioid);
+
+        void UpdateCarroActivo(int UsuarioId);
     }
 }

@@ -49,6 +49,7 @@ namespace Ventas_API
             services.AddTransient<IVentasService, VentasService>();
             services.AddTransient<ICarroLibroService, CarroLibroService>();
             services.AddTransient<ICarroService, CarroService>();
+            services.AddTransient<IQueryGeneric, QueryGeneric>();
 
             //SKL KATA
             services.AddTransient<Compiler, SqlServerCompiler>();

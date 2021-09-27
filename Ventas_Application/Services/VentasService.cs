@@ -13,49 +13,57 @@ namespace Ventas_Application.Services
     public class VentasService : IVentasService
     {
         IGenericRepository Repository;
-        IVentasQuery query;
-        public VentasService(IGenericRepository _repository, IVentasQuery _query)
+        IVentasQuery Query;
+        IQueryGeneric QueryGeneric;
+        public VentasService(IGenericRepository _repository, IVentasQuery _query, IQueryGeneric xQueryGeneric)
         {
             Repository = _repository;
-            query = _query;
+            Query = _query;
+            QueryGeneric = xQueryGeneric;
         }
+
+
 
         public List<ResponseAllVentas> GetAllVentas()
         {
-             List<ResponseAllVentas> ListaVentasResponse=new List<ResponseAllVentas>();
-             var ListaVentas = query.GetAllVentasQuery();
-            foreach(var Venta in ListaVentas)
-             {
+
+            List<ResponseAllVentas> ListaVentasResponse = new List<ResponseAllVentas>();
+            var ListaVentas = QueryGeneric.GetAll<Ventas>();
+
+            foreach (var Venta in ListaVentas)
+            {
                 ListaVentasResponse.Add(new ResponseAllVentas
                 {
                     Id = Venta.Id,
                     Fecha = Venta.Fecha.ToShortDateString(),
-                    Comprobante=Venta.Comprobante,
-                    estado=Venta.estado,
-                    CarroId=Venta.CarroId
+                    Comprobante = Venta.Comprobante,
+                    estado = Venta.estado,
+                    CarroId = Venta.CarroId
 
                 });
-                
-             }
+
+            }
             return ListaVentasResponse;
 
         }
 
-        public List<ResponseGetVenta> GetVentaByFechaId(DateTime fecha, int id)
+        public List<ResponseGetVenta> GetVentaByFechaId(string Fecha, string VentaId)
         {
-            return query.GetVentaByFechaIdQuery(fecha, id);
-            
+
+            return Query.GetVentaByFechaIdQuery(Fecha, VentaId);
+
         }
 
         public ResponseGetVenta GetVentaById(int Id)
         {
-            return query.GetVentaByIdQuery(Id);
-            
+            return Query.GetVentaByIdQuery(Id);
+
         }
 
         public GenericCreatedDto CreateVenta(RequestVenta venta)
         {
-            string[] FechaString = venta.Fecha.Split('-'); //Se podría cambiar a /
+            
+            string[] FechaString = venta.Fecha.Split('-');
             DateTime FechaDatetime = new DateTime(int.Parse(FechaString[0]), int.Parse(FechaString[1]), int.Parse(FechaString[2]));
 
             var entity = new Ventas
@@ -68,8 +76,8 @@ namespace Ventas_Application.Services
 
             Repository.Add<Ventas>(entity);
 
-             return new GenericCreatedDto { Entity = "Ventas", Id = entity.Id.ToString() };
-            
+            return new GenericCreatedDto { Entity = "Ventas", Id = entity.Id.ToString() };
+
         }
 
     }

@@ -14,17 +14,19 @@ namespace Ventas_Application.Services
     {
 
         IGenericRepository Repository;
-        ICarroLibroQuery query;
-        public CarroLibroService(IGenericRepository _repository, ICarroLibroQuery _query)
+        ICarroLibroQuery Query;
+        IQueryGeneric QueryGeneric;
+        public CarroLibroService(IGenericRepository _repository, ICarroLibroQuery _query, IQueryGeneric xQueryGeneric)
         {
             Repository = _repository;
-            query = _query;
+            Query = _query;
+            QueryGeneric = xQueryGeneric;
         }
 
         public List<ResponseAllCarroLibro> GetAllCarroLibros()
         {
             List<ResponseAllCarroLibro> ListaCarroLibroResponse = new List<ResponseAllCarroLibro>();
-            var ListaCarroLibro = query.GetAllCarroLibrosQuery();
+            var ListaCarroLibro = QueryGeneric.GetAll<CarroLibro>();
             foreach (var CarroLibro in ListaCarroLibro)
             {
                 ListaCarroLibroResponse.Add(new ResponseAllCarroLibro
@@ -39,7 +41,7 @@ namespace Ventas_Application.Services
 
         public ResponseGetCarroLibro GetCarroLibroById(int Id)
         {
-            return query.GetCarroLibroByIdQuery(Id);
+            return Query.GetCarroLibroByIdQuery(Id);
         }
 
         public GenericCreatedDto CreateCarroLibro(RequestCarroLibro carroLibro)
@@ -55,7 +57,9 @@ namespace Ventas_Application.Services
             return new GenericCreatedDto { Entity = "CarroLibro", Id = entity.Id.ToString() };
         }
 
-
-
+        public void DeleteCarroLibro(int id)
+        {
+            Repository.Delete<CarroLibro>(id);
+        }
     }
 }

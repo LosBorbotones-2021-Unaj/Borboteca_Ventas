@@ -9,6 +9,8 @@ namespace Ventas_Domain.Queries
 {
     public interface ICarroQuery
     {
-        List<Carro> GetAllCarrosQuery();
+       ResponseCarroCompleto GetCarroCompletoQuery(int Usuarioid);
+        bool VerificarCarroActivo(int usuarioId);
+        void UpdateCarroActivoQuery(int usuarioId);
     }
 }

@@ -23,11 +23,6 @@ namespace Ventas_AccessData.Queries
             context = dbContext;
         }
 
-        public List<CarroLibro> GetAllCarroLibrosQuery()
-        {
-            return context.CarroLibro.Select(cl => new CarroLibro { Id = cl.Id, Carroid = cl.Carroid, Libroid = cl.Libroid}).ToList();
-        }
-
         public ResponseGetCarroLibro GetCarroLibroByIdQuery(int CarroLibroId)
         {
             var db = new QueryFactory(connection, sklKataCompiler);

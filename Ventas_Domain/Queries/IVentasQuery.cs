@@ -8,9 +8,8 @@ namespace Ventas_Domain.Queries
 {
     public interface IVentasQuery
     {
-        List<Ventas> GetAllVentasQuery();
         ResponseGetVenta GetVentaByIdQuery(int VentaId);
-        List<ResponseGetVenta> GetVentaByFechaIdQuery(DateTime Fecha, int VentaId);
-        
+        List<ResponseGetVenta> GetVentaByFechaIdQuery(string Fecha, string VentaId);
+
     }
 }

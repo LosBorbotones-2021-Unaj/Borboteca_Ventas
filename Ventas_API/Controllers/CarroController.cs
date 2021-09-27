@@ -33,33 +33,33 @@ namespace Ventas_API.Controllers
             }
         }
 
-        // GET api/<CarroController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // GET: api/<CarroController>
+        [HttpGet("{Usuarioid}")]
+        public IActionResult Get(int Usuarioid)
         {
-            return "value";
+            try
+            {
+                return new JsonResult(service.GetCarroCompleto(Usuarioid)) { StatusCode = 201 };
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+       
+        [HttpPost]
+        public void Post(int UsuarioId)
+        {
+            
+            service.CreateCarro(UsuarioId);
+            
         }
 
-        // POST api/<CarroController>
-        [HttpPost]    
-           public IActionResult Post(RequestCarro Carro)
-            {
-                try
-                {
-
-                    return new JsonResult(service.CreateCarro(Carro)) { StatusCode = 201 };
-                }
-                catch (Exception e)
-                {
-                    return BadRequest(e.Message);
-                }
-            }
-        
-
         // PUT api/<CarroController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Put(int UsuarioId)
         {
+            service.UpdateCarroActivo(UsuarioId);
         }
 
         // DELETE api/<CarroController>/5

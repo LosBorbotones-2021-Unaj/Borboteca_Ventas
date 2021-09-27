@@ -21,9 +21,16 @@ namespace Ventas_API.Controllers
         }
         // GET: api/<CarroController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                return new JsonResult(service.GetAllCarros()) { StatusCode = 200 };
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         // GET api/<CarroController>/5

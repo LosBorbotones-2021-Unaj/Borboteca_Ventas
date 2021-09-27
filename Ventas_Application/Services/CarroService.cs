@@ -20,6 +20,25 @@ namespace Ventas_Application.Services
             query = _query;
         }
 
+        public List<ResponseAllCarros> GetAllCarros()
+        {
+            List<ResponseAllCarros> ListaCarrosResponse = new List<ResponseAllCarros>();
+            var ListaCarros = query.GetAllCarrosQuery();
+            foreach (var Carro in ListaCarros)
+            {
+                ListaCarrosResponse.Add(new ResponseAllCarros
+                {
+                    Id = Carro.Id,
+                    Valor = Carro.Valor,
+                    Activo = Carro.Activo,
+                    Usuarioid = Carro.Usuarioid
+                });
+
+            }
+            return ListaCarrosResponse;
+
+        }
+
         public GenericCreatedDto CreateCarro(RequestCarro carro)
         {
             var entity = new Carro
@@ -34,5 +53,6 @@ namespace Ventas_Application.Services
 
             return new GenericCreatedDto { Entity = "Carro", Id = entity.Id.ToString() };
         }
+
     }
 }

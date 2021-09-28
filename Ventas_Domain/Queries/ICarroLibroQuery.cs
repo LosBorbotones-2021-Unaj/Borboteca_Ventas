@@ -7,8 +7,7 @@ using Ventas_Domain.Entities;
 namespace Ventas_Domain.Queries
 {
     public interface ICarroLibroQuery
-    {
-        List<CarroLibro> GetAllCarroLibrosQuery();
+    { 
         ResponseGetCarroLibro GetCarroLibroByIdQuery(int CarroLibroId);
     }
 }

@@ -14,16 +14,19 @@ namespace Ventas_Application.Services
     {
         IGenericRepository Repository;
         ICarroQuery query;
-        public CarroService(IGenericRepository _repository, ICarroQuery _query)
+        IQueryGeneric QueryGeneric;
+        public CarroService(IGenericRepository _repository, ICarroQuery _query, IQueryGeneric xQueryGeneric)
         {
             Repository = _repository;
             query = _query;
+            QueryGeneric = xQueryGeneric;
         }
 
         public List<ResponseAllCarros> GetAllCarros()
         {
             List<ResponseAllCarros> ListaCarrosResponse = new List<ResponseAllCarros>();
-            var ListaCarros = query.GetAllCarrosQuery();
+            var ListaCarros = QueryGeneric.GetAll<Carro>();
+
             foreach (var Carro in ListaCarros)
             {
                 ListaCarrosResponse.Add(new ResponseAllCarros
@@ -39,20 +42,35 @@ namespace Ventas_Application.Services
 
         }
 
-        public GenericCreatedDto CreateCarro(RequestCarro carro)
+        public void CreateCarro(int xUsuarioId)
         {
-            var entity = new Carro
-            {
-                Valor = carro.Valor,
-                Activo = carro.Activo,
-                Usuarioid = carro.Usuarioid
+           
 
-            };
+                if (!query.VerificarCarroActivo(xUsuarioId))
+                {
+                    var entity = new Carro
+                    {
+                        Valor = 0,
+                        Activo = true,
+                        Usuarioid = xUsuarioId
 
-            Repository.Add<Carro>(entity);
+                    };
 
-            return new GenericCreatedDto { Entity = "Carro", Id = entity.Id.ToString() };
+                    Repository.Add<Carro>(entity);                  
+                                    
+                }
+            
+        }
+        public ResponseCarroCompleto GetCarroCompleto(int Usuarioid)
+        {
+            return query.GetCarroCompletoQuery(Usuarioid);
         }
 
+        public void UpdateCarroActivo(int UsuarioId)
+        {
+            
+            query.UpdateCarroActivoQuery(UsuarioId);
+            CreateCarro(UsuarioId);
+        }
     }
 }

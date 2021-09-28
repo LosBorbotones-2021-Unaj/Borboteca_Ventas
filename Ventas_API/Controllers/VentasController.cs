@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Ventas_AccessData.Validations.VentasValidations;
 using Ventas_Application.Services.Interface_Service;
 using Ventas_Domain.DTOs.VentasDtos;
 
@@ -35,17 +38,25 @@ namespace Ventas_API.Controllers
         }
         //GET api/<VentasController>/Query Params
         [HttpGet]
-        [Route("api/Ventas")]
-        public IActionResult Get([FromQuery] DateTime Fecha, [FromQuery] int VentaId)
+        [Route("GetByFechaId")]
+        public IActionResult Get([FromQuery] string Fecha, [FromQuery] string VentaId)
         {
-            try
+            VentasValidate FechaIdValidate = new VentasValidate(Fecha, VentaId);
+            VentaByFechaIDValidation validator = new VentaByFechaIDValidation();
+            ValidationResult result = validator.Validate(FechaIdValidate);
+
+            if (!result.IsValid)
             {
+                string DevolverErrores = "";
+                foreach (var error in result.Errors)
+                {
+                    DevolverErrores += error.ErrorMessage;
+                }
+                return new JsonResult(DevolverErrores);
+            }
+            else
                 return new JsonResult(service.GetVentaByFechaId(Fecha, VentaId)) { StatusCode = 200 };
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
+
         }
 
         // GET api/<VentasController>/5
@@ -61,20 +72,30 @@ namespace Ventas_API.Controllers
                 return BadRequest(e.Message);
             }
         }
-       
+
         // POST api/<VentasController>
         [HttpPost]
         public IActionResult Post(RequestVenta Venta)
         {
-            try
-            {
+            CreateVentaValidation validator = new CreateVentaValidation();
+            ValidationResult result = validator.Validate(Venta);
 
-                return new JsonResult(service.CreateVenta(Venta)) { StatusCode = 201 };
-            }
-            catch (Exception e)
+
+            if (!result.IsValid)
             {
-                return BadRequest(e.Message);
+                string DevolverErrores = "";
+                foreach (var error in result.Errors)
+                {
+                    DevolverErrores += error.ErrorMessage;
+                }
+                return new JsonResult(DevolverErrores);
             }
+
+            else
+                return new JsonResult(service.CreateVenta(Venta)) { StatusCode = 201 };
+
+
+
         }
 
         // PUT api/<VentasController>/5
@@ -87,6 +108,7 @@ namespace Ventas_API.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            
         }
     }
 }

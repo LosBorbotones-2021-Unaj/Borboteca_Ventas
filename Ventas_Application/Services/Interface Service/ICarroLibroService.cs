@@ -11,5 +11,7 @@ namespace Ventas_Application.Services.Interface_Service
         List<ResponseAllCarroLibro> GetAllCarroLibros();
         ResponseGetCarroLibro GetCarroLibroById(int id);
         GenericCreatedDto CreateCarroLibro(RequestCarroLibro carroLibro);
+
+        void DeleteCarroLibro(int id);
     }
 }

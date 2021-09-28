@@ -28,8 +28,8 @@ namespace Ventas_AccessData.Queries
             var db = new QueryFactory(connection, sklKataCompiler);
 
             var Venta = db.Query("Ventas")
-                        .Select("Id","Fecha","Comprobante","estado","CarroId")
-                        .Where("Id","=", VentaId )
+                        .Select("Id", "Fecha", "Comprobante", "estado", "CarroId")
+                        .Where("Id", "=", VentaId)
                         .FirstOrDefault<Ventas>();
 
             var carro = db.Query("Carro")
@@ -39,32 +39,36 @@ namespace Ventas_AccessData.Queries
 
             return new ResponseGetVenta
             {
-                Id=Venta.Id,
-                Fecha=Venta.Fecha.ToShortDateString(),
-                Comprobante=Venta.Comprobante,
-                estado=Venta.estado,
-                Carro=carro
+                Id = Venta.Id,
+                Fecha = Venta.Fecha.ToShortDateString(),
+                Comprobante = Venta.Comprobante,
+                estado = Venta.estado,
+                Carro = carro
             };
 
 
         }
 
-        public List<Ventas> GetAllVentasQuery()
-        {
-            return context.Ventas.Select(v => new Ventas {Id = v.Id, Fecha = v.Fecha, Comprobante = v.Comprobante, estado = v.estado, CarroId = v.CarroId }).ToList();        
-            
-        }
 
-        public List<ResponseGetVenta> GetVentaByFechaIdQuery(DateTime Fecha, int VentaId)
+
+        public List<ResponseGetVenta> GetVentaByFechaIdQuery(string Fecha, string VentaId)
         {
-            
+            DateTime FechaDatetime = new DateTime();
+            if (!string.IsNullOrWhiteSpace(Fecha))
+            {
+                string[] FechaString = Fecha.Split('-');
+                FechaDatetime = new DateTime(int.Parse(FechaString[0]), int.Parse(FechaString[1]), int.Parse(FechaString[2]));
+            }
+
             var db = new QueryFactory(connection, sklKataCompiler);
+
             List<ResponseGetVenta> ListaResponseVentas = new List<ResponseGetVenta>();
 
             var Ventas = (db.Query("Ventas")
                                 .Select("Ventas.Id", "Ventas.Fecha", "Ventas.Comprobante", "Ventas.estado", "Ventas.CarroId")
-                                .When(!string.IsNullOrWhiteSpace(VentaId.ToString()), P => P.Where("Ventas.Id", "=", VentaId))
-                                .When(!string.IsNullOrWhiteSpace(Fecha.ToString()), x => x.Where("Ventas.Fecha", "=", Fecha))).Get<Ventas>().ToList(); 
+                                .When(!string.IsNullOrWhiteSpace(VentaId), P => P.Where("Ventas.Id", "=", int.Parse(VentaId)))
+                                .When(!string.IsNullOrWhiteSpace(Fecha), x => x.Where("Ventas.Fecha", "=", FechaDatetime))).Get<Ventas>().ToList();
+
 
 
             foreach (var Venta in Ventas)
@@ -74,7 +78,7 @@ namespace Ventas_AccessData.Queries
                             .Where("Id", "=", Venta.CarroId)
                             .FirstOrDefault<GetVentaByIdCarro>();
 
-                ListaResponseVentas.Add(new ResponseGetVenta 
+                ListaResponseVentas.Add(new ResponseGetVenta
                 {
 
                     Id = Venta.Id,
@@ -82,14 +86,14 @@ namespace Ventas_AccessData.Queries
                     Comprobante = Venta.Comprobante,
                     estado = Venta.estado,
                     Carro = carro
-                          
 
                 });
-                
+
 
             }
             return ListaResponseVentas;
 
         }
+
     }
 }

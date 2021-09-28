@@ -8,9 +8,10 @@ namespace Ventas_Application.Services.Interface_Service
 {
     public interface IVentasService
     {
+
         List<ResponseAllVentas> GetAllVentas();
         ResponseGetVenta GetVentaById(int id);
-        List<ResponseGetVenta> GetVentaByFechaId(DateTime fecha, int id);
+        List<ResponseGetVenta> GetVentaByFechaId(string fecha, string Comprobante);
         GenericCreatedDto CreateVenta(RequestVenta venta);
     }
 }

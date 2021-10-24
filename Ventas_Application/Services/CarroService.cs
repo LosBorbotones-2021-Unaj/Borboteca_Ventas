@@ -61,9 +61,9 @@ namespace Ventas_Application.Services
                 }
             
         }
-        public ResponseCarroCompleto GetCarroCompleto(int Usuarioid)
+        public ResponseLibrosCarro GetLibrosDelCarro(int Usuarioid)
         {
-            return query.GetCarroCompletoQuery(Usuarioid);
+            return query.GetLibrosDelCarroQuery(Usuarioid);
         }
 
         public void UpdateCarroActivo(int UsuarioId)

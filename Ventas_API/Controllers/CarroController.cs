@@ -39,7 +39,7 @@ namespace Ventas_API.Controllers
         {
             try
             {
-                return new JsonResult(service.GetCarroCompleto(Usuarioid)) { StatusCode = 200 };
+                return new JsonResult(service.GetLibrosDelCarro(Usuarioid)) { StatusCode = 200 };
             }
             catch (Exception e)
             {

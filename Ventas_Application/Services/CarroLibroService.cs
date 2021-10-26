@@ -1,4 +1,4 @@
-﻿using Ventas_Domain.Commands;
+using Ventas_Domain.Commands;
 using Ventas_Domain.Queries;
 using System;
 using System.Collections.Generic;

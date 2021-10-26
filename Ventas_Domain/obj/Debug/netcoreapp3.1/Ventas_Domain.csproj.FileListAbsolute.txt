@@ -1,0 +1,10 @@
+C:\Users\Tomi\Desktop\Borboteca_Ventas\Borboteca_Ventas\Ventas_Domain\bin\Debug\netcoreapp3.1\Ventas_Domain.deps.json
+C:\Users\Tomi\Desktop\Borboteca_Ventas\Borboteca_Ventas\Ventas_Domain\bin\Debug\netcoreapp3.1\Ventas_Domain.dll
+C:\Users\Tomi\Desktop\Borboteca_Ventas\Borboteca_Ventas\Ventas_Domain\bin\Debug\netcoreapp3.1\Ventas_Domain.pdb
+C:\Users\Tomi\Desktop\Borboteca_Ventas\Borboteca_Ventas\Ventas_Domain\obj\Debug\netcoreapp3.1\Ventas_Domain.csproj.AssemblyReference.cache
+C:\Users\Tomi\Desktop\Borboteca_Ventas\Borboteca_Ventas\Ventas_Domain\obj\Debug\netcoreapp3.1\Ventas_Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tomi\Desktop\Borboteca_Ventas\Borboteca_Ventas\Ventas_Domain\obj\Debug\netcoreapp3.1\Ventas_Domain.AssemblyInfoInputs.cache
+C:\Users\Tomi\Desktop\Borboteca_Ventas\Borboteca_Ventas\Ventas_Domain\obj\Debug\netcoreapp3.1\Ventas_Domain.AssemblyInfo.cs
+C:\Users\Tomi\Desktop\Borboteca_Ventas\Borboteca_Ventas\Ventas_Domain\obj\Debug\netcoreapp3.1\Ventas_Domain.csproj.CoreCompileInputs.cache
+C:\Users\Tomi\Desktop\Borboteca_Ventas\Borboteca_Ventas\Ventas_Domain\obj\Debug\netcoreapp3.1\Ventas_Domain.dll
+C:\Users\Tomi\Desktop\Borboteca_Ventas\Borboteca_Ventas\Ventas_Domain\obj\Debug\netcoreapp3.1\Ventas_Domain.pdb

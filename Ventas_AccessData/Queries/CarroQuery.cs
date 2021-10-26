@@ -26,7 +26,7 @@ namespace Ventas_AccessData.Queries
             context = dbContext;
         }
 
-        public ResponseCarroCompleto GetCarroCompletoQuery(int Usuarioid)
+        public ResponseLibrosCarro GetLibrosDelCarroQuery(int Usuarioid)
         {
             var db = new QueryFactory(connection, sklKataCompiler);
 
@@ -34,21 +34,15 @@ namespace Ventas_AccessData.Queries
                         .Select("Id", "Valor", "Activo", "UsuarioId")
                         .Where("UsuarioId", "=", Usuarioid)
                         .Where("Activo" , "=" , true ).FirstOrDefault<Carro>();
-
-            var ListaVentas = db.Query("Ventas")
-                .Select("Fecha", "Comprobante", "estado", "CarroId")
-                .Where("CarroId", "=", Carro.Id).Get<RequestVenta>().ToList();
-
-            var ListaCarroLibro = db.Query("CarroLibro").Select("Id", "CarroId", "LibroId").Where("CarroId", "=", Carro.Id).Get<GetCarroLibroByCarroId>().ToList();
-
-            return new ResponseCarroCompleto
+                        
+            var ListaLibros = context.CarroLibro.Where(w => w.Carroid == Carro.Id).Select(c => c.Libroid).ToList();
+            
+          
+            return new ResponseLibrosCarro
             {
-                Id = Carro.Id,
-                Valor = Carro.Valor,
-                Activo = Carro.Activo,
-                Usuarioid = Carro.Usuarioid,
-                Ventas = ListaVentas,
-                CarroLibros = ListaCarroLibro
+                LibrosIds = ListaLibros,
+                ValorTotalCarro = Carro.Valor
+                
             };
         }
 

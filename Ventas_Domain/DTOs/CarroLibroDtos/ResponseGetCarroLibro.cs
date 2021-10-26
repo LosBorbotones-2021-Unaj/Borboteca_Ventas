@@ -7,7 +7,7 @@ namespace Ventas_Domain.DTOs.CarroLibroDtos
     public class ResponseGetCarroLibro
     {
         public int Id { get; set; }
-        public int Libroid { get; set; }
+        public Guid Libroid { get; set; }
         public int Carroid { get; set; }
     }
 }

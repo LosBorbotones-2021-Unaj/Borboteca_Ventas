@@ -19,35 +19,8 @@ namespace Ventas_API.Controllers
         {
             service = xservice;
         }
-        // GET: api/<CarroLibroController>
-        [HttpGet]
-        public IActionResult Get()
-        {
-            try
-            {
-                return new JsonResult(service.GetAllCarroLibros()) { StatusCode = 200 };
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
-
-        // GET api/<CarroLibroController>/5
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
-        {
-            try
-            {
-                return new JsonResult(service.GetCarroLibroById(id)) { StatusCode = 200 };
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
-
         
+
         // POST api/<CarroLibroController>
         [HttpPost]
         public IActionResult Post(RequestCarroLibro Carro)
@@ -62,24 +35,6 @@ namespace Ventas_API.Controllers
             }
         }
 
-        // PUT api/<CarroLibroController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<CarroLibroController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-            try
-            {
-                service.DeleteCarroLibro(id);
-            }
-            catch (Exception e)
-            {
-                BadRequest(e.Message);
-            }
-        }
+       
     }
 }

@@ -8,6 +8,6 @@ namespace Ventas_Domain.Queries
 {
     public interface ICarroLibroQuery
     { 
-        ResponseGetCarroLibro GetCarroLibroByIdQuery(int CarroLibroId);
+        
     }
 }

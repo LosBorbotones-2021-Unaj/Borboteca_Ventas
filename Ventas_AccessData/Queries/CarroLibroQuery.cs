@@ -23,21 +23,5 @@ namespace Ventas_AccessData.Queries
             context = dbContext;
         }
 
-        public ResponseGetCarroLibro GetCarroLibroByIdQuery(int CarroLibroId)
-        {
-            var db = new QueryFactory(connection, sklKataCompiler);
-
-            var CarroLibro = db.Query("CarroLibro")
-                        .Select("Id", "Libroid", "Carroid")
-                        .Where("Id", "=", CarroLibroId)
-                        .FirstOrDefault<CarroLibro>();
-
-            return new ResponseGetCarroLibro
-            {
-                Id = CarroLibro.Id,
-                Carroid = CarroLibro.Carroid,
-                Libroid = CarroLibro.Libroid
-            };
-        }
     }
 }

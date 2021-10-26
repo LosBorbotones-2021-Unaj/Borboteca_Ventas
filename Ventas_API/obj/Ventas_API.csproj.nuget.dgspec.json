@@ -1,0 +1,317 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_API\\Ventas_API.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_AccessData\\Ventas_AccessData.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_AccessData\\Ventas_AccessData.csproj",
+        "projectName": "Ventas_AccessData",
+        "projectPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_AccessData\\Ventas_AccessData.csproj",
+        "packagesPath": "C:\\Users\\Tomi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_AccessData\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Tomi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://www.nuget.org/api/v2/": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Application\\Ventas_Application.csproj": {
+                "projectPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Application\\Ventas_Application.csproj"
+              },
+              "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Domain\\Ventas_Domain.csproj": {
+                "projectPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Domain\\Ventas_Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[10.3.3, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[10.3.3, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "NPOI": {
+              "target": "Package",
+              "version": "[2.5.4, )"
+            },
+            "SqlKata": {
+              "target": "Package",
+              "version": "[2.3.7, )"
+            },
+            "SqlKata.Execution": {
+              "target": "Package",
+              "version": "[2.3.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_API\\Ventas_API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_API\\Ventas_API.csproj",
+        "projectName": "Ventas_API",
+        "projectPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_API\\Ventas_API.csproj",
+        "packagesPath": "C:\\Users\\Tomi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_API\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Tomi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://www.nuget.org/api/v2/": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_AccessData\\Ventas_AccessData.csproj": {
+                "projectPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_AccessData\\Ventas_AccessData.csproj"
+              },
+              "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Application\\Ventas_Application.csproj": {
+                "projectPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Application\\Ventas_Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Application\\Ventas_Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Application\\Ventas_Application.csproj",
+        "projectName": "Ventas_Application",
+        "projectPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Application\\Ventas_Application.csproj",
+        "packagesPath": "C:\\Users\\Tomi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Tomi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://www.nuget.org/api/v2/": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {
+              "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Domain\\Ventas_Domain.csproj": {
+                "projectPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Domain\\Ventas_Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Domain\\Ventas_Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Domain\\Ventas_Domain.csproj",
+        "projectName": "Ventas_Domain",
+        "projectPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Domain\\Ventas_Domain.csproj",
+        "packagesPath": "C:\\Users\\Tomi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Tomi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://www.nuget.org/api/v2/": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

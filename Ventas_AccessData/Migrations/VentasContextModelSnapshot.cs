@@ -50,8 +50,8 @@ namespace Ventas_AccessData.Migrations
                     b.Property<int>("Carroid")
                         .HasColumnType("int");
 
-                    b.Property<int>("Libroid")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Libroid")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 

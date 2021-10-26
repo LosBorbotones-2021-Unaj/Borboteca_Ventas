@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Ventas_Domain.DTOs;
@@ -9,7 +9,7 @@ namespace Ventas_Domain.Queries
 {
     public interface ICarroQuery
     {
-       ResponseCarroCompleto GetCarroCompletoQuery(int Usuarioid);
+        ResponseLibrosCarro GetLibrosDelCarroQuery(int Usuarioid);
         bool VerificarCarroActivo(int usuarioId);
         void UpdateCarroActivoQuery(int usuarioId);
     }

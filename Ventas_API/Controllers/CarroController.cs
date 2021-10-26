@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,19 +19,7 @@ namespace Ventas_API.Controllers
         {
             service = xservice;
         }
-        // GET: api/<CarroController>
-        [HttpGet]
-        public IActionResult Get()
-        {
-            try
-            {
-                return new JsonResult(service.GetAllCarros()) { StatusCode = 200 };
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
+       
 
         // GET: api/<CarroController>
         [HttpGet("{Usuarioid}")]
@@ -39,7 +27,7 @@ namespace Ventas_API.Controllers
         {
             try
             {
-                return new JsonResult(service.GetCarroCompleto(Usuarioid)) { StatusCode = 201 };
+                return new JsonResult(service.GetLibrosDelCarro(Usuarioid)) { StatusCode = 200 };
             }
             catch (Exception e)
             {
@@ -50,8 +38,7 @@ namespace Ventas_API.Controllers
         [HttpPost]
         public void Post(int UsuarioId)
         {
-            
-            service.CreateCarro(UsuarioId);
+                service.CreateCarro(UsuarioId);
             
         }
 

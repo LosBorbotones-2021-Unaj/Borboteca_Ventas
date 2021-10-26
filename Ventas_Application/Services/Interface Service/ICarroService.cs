@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Ventas_Domain.DTOs;
@@ -9,8 +9,7 @@ namespace Ventas_Application.Services.Interface_Service
     public interface ICarroService
     {
         void CreateCarro(int UsuarioId);
-        List<ResponseAllCarros> GetAllCarros();
-        ResponseCarroCompleto GetCarroCompleto(int Usuarioid);
+        ResponseLibrosCarro GetLibrosDelCarro(int Usuarioid);
 
         void UpdateCarroActivo(int UsuarioId);
     }

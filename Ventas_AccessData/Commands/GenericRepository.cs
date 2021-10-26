@@ -28,6 +28,7 @@ namespace Ventas_AccessData.Commands
             _context.Entry(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
         }
+
         public void Delete<T>(int _id) where T : class
         {
             _context.Remove(_context.Find<T>(_id));

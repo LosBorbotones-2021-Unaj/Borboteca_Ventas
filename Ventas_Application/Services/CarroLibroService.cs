@@ -1,4 +1,4 @@
-﻿using Ventas_Domain.Commands;
+using Ventas_Domain.Commands;
 using Ventas_Domain.Queries;
 using System;
 using System.Collections.Generic;
@@ -22,28 +22,7 @@ namespace Ventas_Application.Services
             Query = _query;
             QueryGeneric = xQueryGeneric;
         }
-
-        public List<ResponseAllCarroLibro> GetAllCarroLibros()
-        {
-            List<ResponseAllCarroLibro> ListaCarroLibroResponse = new List<ResponseAllCarroLibro>();
-            var ListaCarroLibro = QueryGeneric.GetAll<CarroLibro>();
-            foreach (var CarroLibro in ListaCarroLibro)
-            {
-                ListaCarroLibroResponse.Add(new ResponseAllCarroLibro
-                {
-                    Id = CarroLibro.Id,
-                    Carroid = CarroLibro.Carroid,
-                    Libroid = CarroLibro.Libroid
-                });
-            }
-            return ListaCarroLibroResponse;
-        }
-
-        public ResponseGetCarroLibro GetCarroLibroById(int Id)
-        {
-            return Query.GetCarroLibroByIdQuery(Id);
-        }
-
+        
         public GenericCreatedDto CreateCarroLibro(RequestCarroLibro carroLibro)
         {
             var entity = new CarroLibro
@@ -57,9 +36,6 @@ namespace Ventas_Application.Services
             return new GenericCreatedDto { Entity = "CarroLibro", Id = entity.Id.ToString() };
         }
 
-        public void DeleteCarroLibro(int id)
-        {
-            Repository.Delete<CarroLibro>(id);
-        }
+     
     }
 }

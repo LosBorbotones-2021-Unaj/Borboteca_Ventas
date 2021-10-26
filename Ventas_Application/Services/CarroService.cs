@@ -22,25 +22,6 @@ namespace Ventas_Application.Services
             QueryGeneric = xQueryGeneric;
         }
 
-        public List<ResponseAllCarros> GetAllCarros()
-        {
-            List<ResponseAllCarros> ListaCarrosResponse = new List<ResponseAllCarros>();
-            var ListaCarros = QueryGeneric.GetAll<Carro>();
-
-            foreach (var Carro in ListaCarros)
-            {
-                ListaCarrosResponse.Add(new ResponseAllCarros
-                {
-                    Id = Carro.Id,
-                    Valor = Carro.Valor,
-                    Activo = Carro.Activo,
-                    Usuarioid = Carro.Usuarioid
-                });
-
-            }
-            return ListaCarrosResponse;
-
-        }
 
         public void CreateCarro(int xUsuarioId)
         {
@@ -61,9 +42,9 @@ namespace Ventas_Application.Services
                 }
             
         }
-        public ResponseCarroCompleto GetCarroCompleto(int Usuarioid)
+        public ResponseLibrosCarro GetLibrosDelCarro(int Usuarioid)
         {
-            return query.GetCarroCompletoQuery(Usuarioid);
+            return query.GetLibrosDelCarroQuery(Usuarioid);
         }
 
         public void UpdateCarroActivo(int UsuarioId)

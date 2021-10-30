@@ -49,10 +49,6 @@ namespace Ventas_API.Controllers
             service.UpdateCarroActivo(UsuarioId);
         }
 
-        // DELETE api/<CarroController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        
     }
 }

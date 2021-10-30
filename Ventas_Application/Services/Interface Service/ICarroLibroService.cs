@@ -9,6 +9,7 @@ namespace Ventas_Application.Services.Interface_Service
     public interface ICarroLibroService
     { 
         GenericCreatedDto CreateCarroLibro(RequestCarroLibro carroLibro);
+        Response DeleteCarroLibro(int Id);
 
     }
 }

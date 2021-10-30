@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "1Hxbv6jLWLje508QBV8TzJ11YPQ2Ixt2UV7ly2hGbdR8kIz8pENAbcgomPOmcqpvYc6tCEiG/TQ34U0uNFbMnQ==",
+  "dgSpecHash": "fGGD6IHEGyxrzo6kb+QmVzSqF0X6W8AMDL+r0M8x2qtN5FAVwy+BH9+gmKZU+RBL31+ZHHKGzqsNT+syb1Uc+Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Application\\Ventas_Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Tomi\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "C:\\Users\\Tomi\\.nuget\\packages\\system.text.encodings.web\\5.0.1\\system.text.encodings.web.5.0.1.nupkg.sha512",
+    "C:\\Users\\Tomi\\.nuget\\packages\\system.text.json\\5.0.2\\system.text.json.5.0.2.nupkg.sha512"
+  ],
   "logs": []
 }

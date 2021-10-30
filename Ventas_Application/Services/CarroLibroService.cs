@@ -27,7 +27,7 @@ namespace Ventas_Application.Services
         {
             var entity = new CarroLibro
             {
-                Carroid = carroLibro.Carroid,
+                Carroid = carroLibro.Carroid, 
                 Libroid = carroLibro.Libroid
             };
 
@@ -36,6 +36,11 @@ namespace Ventas_Application.Services
             return new GenericCreatedDto { Entity = "CarroLibro", Id = entity.Id.ToString() };
         }
 
-     
+        public Response DeleteCarroLibro(int Id)
+        {
+            Repository.Delete<CarroLibro>(Id);
+
+            return new Response { };
+        }
     }
 }

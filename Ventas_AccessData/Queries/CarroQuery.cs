@@ -1,4 +1,4 @@
-sing SqlKata.Compilers;
+using SqlKata.Compilers;
 using SqlKata.Execution;
 using System;
 using System.Collections.Generic;

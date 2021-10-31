@@ -7,6 +7,10 @@ using Ventas_Application.Services.Interface_Service;
 using Ventas_Domain.Entities;
 using Ventas_Domain.DTOs.VentasDtos;
 using Ventas_Domain.DTOs;
+using FluentValidation.Results;
+using Ventas_AccessData.Validations.VentasValidations;
+using Ventas_Domain.IDatabaseValidations;
+using System.Linq;
 
 namespace Ventas_Application.Services
 {
@@ -15,11 +19,14 @@ namespace Ventas_Application.Services
         IGenericRepository Repository;
         IVentasQuery Query;
         IQueryGeneric QueryGeneric;
-        public VentasService(IGenericRepository _repository, IVentasQuery _query, IQueryGeneric xQueryGeneric)
+        ICarroValidations CarroValidate;
+        List<string> ValidacionesBaseDatos;
+        public VentasService(IGenericRepository _repository, IVentasQuery _query, IQueryGeneric xQueryGeneric, ICarroValidations xCarroValidate)
         {
             Repository = _repository;
             Query = _query;
             QueryGeneric = xQueryGeneric;
+            CarroValidate = xCarroValidate;
         }
 
 
@@ -60,23 +67,41 @@ namespace Ventas_Application.Services
 
         }
 
-        public GenericCreatedDto CreateVenta(RequestVenta venta)
+        public Response CreateVenta(RequestVenta venta)
         {
-            
-            string[] FechaString = venta.Fecha.Split('-');
-            DateTime FechaDatetime = new DateTime(int.Parse(FechaString[0]), int.Parse(FechaString[1]), int.Parse(FechaString[2]));
+            CreateVentaValidation validator = new CreateVentaValidation();
+            ValidationResult result = validator.Validate(venta);
+            ValidacionesBaseDatos = new List<string>();
+            var ListaErrores = new List<Object>();
+            Ventas entity = null;
+  
 
-            var entity = new Ventas
+            if (result.IsValid)
             {
-                Fecha = FechaDatetime,
-                Comprobante = venta.Comprobante,
-                estado = venta.estado,
-                CarroId = venta.CarroId
-            };
+                ValidacionesBaseDatos.Add(CarroValidate.ValidateCarroId(venta.CarroId));
 
-            Repository.Add<Ventas>(entity);
+                if (!ValidacionesBaseDatos.Any(Error => Error != null)) 
+                { 
+                    string[] FechaString = venta.Fecha.Split('-');
+                    DateTime FechaDatetime = new DateTime(int.Parse(FechaString[0]), int.Parse(FechaString[1]), int.Parse(FechaString[2]));
 
-            return new GenericCreatedDto { Entity = "Ventas", Id = entity.Id.ToString() };
+                    entity = new Ventas
+                    {
+                        Fecha = FechaDatetime,
+                        Comprobante = venta.Comprobante,
+                        estado = venta.estado,
+                        CarroId = venta.CarroId
+                    };
+
+                    Repository.Add<Ventas>(entity);
+                }
+                else ListaErrores.AddRange(ValidacionesBaseDatos.Where(Error => Error != null));
+            }
+            else result.Errors.ForEach(Error => ListaErrores.Add(Error.ErrorMessage.ToString()));
+
+            if(ListaErrores.Count != 0 ) return new Response{ IsValid =false, Errors=ListaErrores };
+
+            return new Response { entity = "Ventas", Id = entity.Id.ToString(),Errors=null,IsValid = true };
 
         }
 

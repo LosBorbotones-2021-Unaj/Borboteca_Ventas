@@ -51,14 +51,6 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
-            "FluentValidation": {
-              "target": "Package",
-              "version": "[10.3.3, )"
-            },
-            "FluentValidation.AspNetCore": {
-              "target": "Package",
-              "version": "[10.3.3, )"
-            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.10, )"
@@ -236,6 +228,20 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[10.3.4, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[10.3.4, )"
+            },
+            "NPOI": {
+              "target": "Package",
+              "version": "[2.5.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

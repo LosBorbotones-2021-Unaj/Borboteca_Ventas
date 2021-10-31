@@ -12,6 +12,6 @@ namespace Ventas_Application.Services.Interface_Service
         List<ResponseAllVentas> GetAllVentas();
         ResponseGetVenta GetVentaById(int id);
         List<ResponseGetVenta> GetVentaByFechaId(string fecha, string Comprobante);
-        GenericCreatedDto CreateVenta(RequestVenta venta);
+        Response CreateVenta(RequestVenta venta);
     }
 }

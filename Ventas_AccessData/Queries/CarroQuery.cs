@@ -50,6 +50,7 @@ namespace Ventas_AccessData.Queries
 
         public bool VerificarCarroActivo(int UsuarioId)
         {
+
            
             var Carro = context.Carro.Where(w => w.Activo == true).Where(x => x.Usuarioid == UsuarioId).Select(c => c).FirstOrDefault();
             

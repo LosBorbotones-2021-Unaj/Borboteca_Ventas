@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Ventas_AccessData.Validations.VentasValidations;
 using Ventas_Application.Services.Interface_Service;
+using Ventas_Domain.DTOs;
 using Ventas_Domain.DTOs.VentasDtos;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -44,7 +45,7 @@ namespace Ventas_API.Controllers
             VentasValidate FechaIdValidate = new VentasValidate(Fecha, VentaId);
             VentaByFechaIDValidation validator = new VentaByFechaIDValidation();
             ValidationResult result = validator.Validate(FechaIdValidate);
-
+        
             if (!result.IsValid)
             {
                 string DevolverErrores = "";
@@ -77,24 +78,12 @@ namespace Ventas_API.Controllers
         [HttpPost]
         public IActionResult Post(RequestVenta Venta)
         {
-            CreateVentaValidation validator = new CreateVentaValidation();
-            ValidationResult result = validator.Validate(Venta);
 
+            Response Respuesta = service.CreateVenta(Venta);
 
-            if (!result.IsValid)
-            {
-                string DevolverErrores = "";
-                foreach (var error in result.Errors)
-                {
-                    DevolverErrores += error.ErrorMessage;
-                }
-                return new JsonResult(DevolverErrores);
-            }
+            if (Respuesta.IsValid) return new JsonResult(Respuesta) { StatusCode = 201 };
 
-            else
-                return new JsonResult(service.CreateVenta(Venta)) { StatusCode = 201 };
-
-
+            return BadRequest(Respuesta.Errors);
 
         }
 

@@ -18,9 +18,12 @@ using System.Threading.Tasks;
 using Ventas_AccessData;
 using Ventas_AccessData.Commands;
 using Ventas_AccessData.Queries;
+using Ventas_AccessData.Validations.CarroValidations;
+using Ventas_AccessData.Validations.VentasValidations;
 using Ventas_Application.Services;
 using Ventas_Application.Services.Interface_Service;
 using Ventas_Domain.Commands;
+using Ventas_Domain.IDatabaseValidations;
 using Ventas_Domain.Queries;
 
 namespace Ventas_API
@@ -50,6 +53,7 @@ namespace Ventas_API
             services.AddTransient<ICarroLibroService, CarroLibroService>();
             services.AddTransient<ICarroService, CarroService>();
             services.AddTransient<IQueryGeneric, QueryGeneric>();
+            services.AddTransient<ICarroValidations, CarroValidations>();
 
             //SKL KATA
             services.AddTransient<Compiler, SqlServerCompiler>();

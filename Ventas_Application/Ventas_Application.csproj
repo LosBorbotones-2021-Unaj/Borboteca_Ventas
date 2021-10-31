@@ -8,4 +8,14 @@
     <ProjectReference Include="..\Ventas_Domain\Ventas_Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="FluentValidations\CarroLibroValidations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="10.3.4" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.4" />
+    <PackageReference Include="NPOI" Version="2.5.4" />
+  </ItemGroup>
+
 </Project>

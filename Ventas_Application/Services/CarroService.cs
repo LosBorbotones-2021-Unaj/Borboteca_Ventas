@@ -25,7 +25,7 @@ namespace Ventas_Application.Services
 
         public void CreateCarro(int xUsuarioId)
         {
-           
+            var ListaErrores = new List<Object>();
 
                 if (!query.VerificarCarroActivo(xUsuarioId))
                 {
@@ -36,7 +36,7 @@ namespace Ventas_Application.Services
                         Usuarioid = xUsuarioId
 
                     };
-
+                    
                     Repository.Add<Carro>(entity);                  
                                     
                 }

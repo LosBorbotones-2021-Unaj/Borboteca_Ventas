@@ -72,5 +72,11 @@ namespace Ventas_AccessData.Queries
             context.Update(Carro);
             context.SaveChanges();
         }
+
+        public int GetCarroByUsuarioId(int UsuarioId)
+        {
+            int CarroId = context.Carro.Where(c => c.Usuarioid == UsuarioId).Where(c => c.Activo == true).Select(C => C.Id).FirstOrDefault();
+            return CarroId;
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace Ventas_Application.Services.Interface_Service
 {
     public interface ICarroService
     {
-        void CreateCarro(int UsuarioId);
+        Response CreateCarro(int UsuarioId);
         ResponseLibrosCarro GetLibrosDelCarro(int Usuarioid);
 
         void UpdateCarroActivo(int UsuarioId);

@@ -27,5 +27,11 @@ namespace Ventas_AccessData.Validations.CarroValidations
             return null;
         }
 
+        public string ValidateUsuarioId(int UsuarioId)
+        {
+            if (!Context.Carro.Any(C => C.Usuarioid == UsuarioId)) return "El usuario que ingreso no esta asignada a ningun carro";
+
+            else return null;
+        }
     }
 }

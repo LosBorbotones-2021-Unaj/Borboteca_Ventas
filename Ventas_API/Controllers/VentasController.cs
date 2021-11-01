@@ -9,6 +9,7 @@ using Ventas_AccessData.Validations.VentasValidations;
 using Ventas_Application.Services.Interface_Service;
 using Ventas_Domain.DTOs;
 using Ventas_Domain.DTOs.VentasDtos;
+using Ventas_Domain.Entities;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,7 +25,7 @@ namespace Ventas_API.Controllers
             service = xservice;
         }
 
-       
+
         //GET api/<VentasController>/Query Params
         [HttpGet]
         [Route("GetByFechaId")]
@@ -34,31 +35,19 @@ namespace Ventas_API.Controllers
 
             foreach (var response in Lista)
                 if (response.Errors != null) return BadRequest(response.Errors);
-            
-             return new JsonResult(Lista) { StatusCode = 200 };
+
+            return new JsonResult(Lista) { StatusCode = 200 };
 
         }
 
-        // GET api/<VentasController>/5
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
-        {
-            try
-            {
-                return new JsonResult(service.GetVentaById(id)) { StatusCode = 200 };
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-        }
+
 
         // POST api/<VentasController>
         [HttpPost]
-        public IActionResult Post(RequestVenta Venta)
+        public IActionResult Post(int UsuarioId)
         {
 
-            Response Respuesta = service.CreateVenta(Venta);
+            Response Respuesta = service.CreateVenta(UsuarioId);
 
             if (Respuesta.IsValid) return new JsonResult(Respuesta) { StatusCode = 201 };
 
@@ -72,6 +61,13 @@ namespace Ventas_API.Controllers
         public void Delete(int id)
         {
             
+        }
+
+        // PUT api/<CarroController>/5
+        [HttpPut("{VentaId}")]
+        public Ventas Put(int VentaId)
+        {
+            return service.VentaCerrada(VentaId);
         }
     }
 }

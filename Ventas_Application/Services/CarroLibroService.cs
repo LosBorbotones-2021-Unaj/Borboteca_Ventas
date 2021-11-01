@@ -15,25 +15,30 @@ namespace Ventas_Application.Services
 
         IGenericRepository Repository;
         ICarroLibroQuery Query;
+        ICarroQuery QueryCarro;
         IQueryGeneric QueryGeneric;
-        public CarroLibroService(IGenericRepository _repository, ICarroLibroQuery _query, IQueryGeneric xQueryGeneric)
+        public CarroLibroService(IGenericRepository _repository, ICarroLibroQuery _query, ICarroQuery _QueryCarro, IQueryGeneric xQueryGeneric)
         {
             Repository = _repository;
             Query = _query;
+            QueryCarro = _QueryCarro;
             QueryGeneric = xQueryGeneric;
         }
         
-        public GenericCreatedDto CreateCarroLibro(RequestCarroLibro carroLibro)
+        public Response CreateCarroLibro(RequestCarroLibro carroLibro)
         {
+
+            int CarroId = QueryCarro.GetCarroByUsuarioId(carroLibro.Usuarioid);
+
             var entity = new CarroLibro
             {
-                Carroid = carroLibro.Carroid, 
-                Libroid = carroLibro.Libroid
+                Carroid = CarroId, 
+                Libroid = Guid.Parse(carroLibro.Libroid)
             };
 
             Repository.Add<CarroLibro>(entity);
 
-            return new GenericCreatedDto { Entity = "CarroLibro", Id = entity.Id.ToString() };
+            return new Response { entity = "CarroLibro", Id = entity.Id.ToString() };
         }
 
         public Response DeleteCarroLibro(int Id)

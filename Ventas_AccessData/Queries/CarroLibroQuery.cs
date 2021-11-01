@@ -23,5 +23,19 @@ namespace Ventas_AccessData.Queries
             context = dbContext;
         }
 
+        public bool GetLibrosByCarroId(int CarroId)
+        {
+           
+
+            var Libros =    (from CL in context.CarroLibro             
+                             where CL.Carroid == CarroId
+                             group CL by CL.Carroid into Ids
+                             select new { LibrosDeLCarro = Ids.Count() }).FirstOrDefault();
+
+            if (Libros == null) return true;
+
+            else return false;
+        }
+
     }
 }

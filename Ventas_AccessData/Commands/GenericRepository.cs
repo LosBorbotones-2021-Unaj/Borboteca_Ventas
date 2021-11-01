@@ -23,9 +23,11 @@ namespace Ventas_AccessData.Commands
             _context.SaveChanges();
         }
 
-        public void Update<T>(T entity) where T : class
+        public void Update<T>(int id, T NewEntity) where T : class
         {
-            _context.Entry(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            var entity = _context.Find<T>(id);
+
+            _context.Entry(entity).CurrentValues.SetValues(NewEntity);
             _context.SaveChanges();
         }
 

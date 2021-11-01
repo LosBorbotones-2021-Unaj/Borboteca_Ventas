@@ -23,33 +23,22 @@ namespace Ventas_AccessData.Queries
             context = dbContext;
         }
 
-        public ResponseGetVenta GetVentaByIdQuery(int VentaId)
+        public Ventas GetVentaByCarroIdQuery(int CarroId)
         {
             var db = new QueryFactory(connection, sklKataCompiler);
 
-            var Venta = db.Query("Ventas")
-                        .Select("Id", "Fecha", "Comprobante", "estado", "CarroId")
-                        .Where("Id", "=", VentaId)
-                        .FirstOrDefault<Ventas>();
+            var Venta = context.Ventas.Where(V => V.CarroId == CarroId).FirstOrDefault();
 
-            var carro = db.Query("Carro")
-                        .Select("Id", "Valor", "Activo", "UsuarioId")
-                        .Where("Id", "=", Venta.CarroId)
-                        .FirstOrDefault<GetVentaByIdCarro>();
-
-            return new ResponseGetVenta
+            return new Ventas
             {
                 Id = Venta.Id,
-                Fecha = Venta.Fecha.ToShortDateString(),
+                Fecha = Venta.Fecha,
                 Comprobante = Venta.Comprobante,
-                estado = Venta.estado,
-                Carro = carro,
-                IsValid = true
+                estado = false,
+                CarroId = CarroId
             };
 
-
         }
-
 
 
         public List<ResponseGetVenta> GetVentaByFechaIdQuery(string Fecha, string estado)
@@ -95,6 +84,6 @@ namespace Ventas_AccessData.Queries
             return ListaResponseVentas;
 
         }
-
+       
     }
 }

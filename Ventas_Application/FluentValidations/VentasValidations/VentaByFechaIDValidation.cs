@@ -26,7 +26,7 @@ namespace Ventas_AccessData.Validations.VentasValidations
                     DateTime Date = formato.Parse(Fecha);
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

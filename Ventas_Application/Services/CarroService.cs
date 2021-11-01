@@ -23,13 +23,14 @@ namespace Ventas_Application.Services
         }
 
 
-        public void CreateCarro(int xUsuarioId)
+        public Response CreateCarro(int xUsuarioId)
         {
             var ListaErrores = new List<Object>();
+            Carro entity;
 
                 if (!query.VerificarCarroActivo(xUsuarioId))
                 {
-                    var entity = new Carro
+                    entity = new Carro
                     {
                         Valor = 0,
                         Activo = true,
@@ -37,9 +38,11 @@ namespace Ventas_Application.Services
 
                     };
                     
-                    Repository.Add<Carro>(entity);                  
-                                    
+                    Repository.Add<Carro>(entity);
+                    return new Response { entity = "Carro", IsValid = true, Id = entity.Id.ToString() };                 
                 }
+
+            return new Response { entity = null };
             
         }
         public ResponseLibrosCarro GetLibrosDelCarro(int Usuarioid)
@@ -51,6 +54,7 @@ namespace Ventas_Application.Services
         {
             
             query.UpdateCarroActivoQuery(UsuarioId);
+
             CreateCarro(UsuarioId);
         }
     }

@@ -30,5 +30,6 @@ namespace Ventas_AccessData.Validations.VentasValidations
             if (!Context.Ventas.Any(V => V.Fecha == FechaDateTime)) return "La fecha que ingreso no esta asignada a ninguna venta";
             else return null;
         }
+        
     }
 }

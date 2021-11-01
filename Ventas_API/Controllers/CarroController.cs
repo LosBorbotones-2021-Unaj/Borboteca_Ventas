@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ventas_Application.Services.Interface_Service;
+using Ventas_Domain.DTOs;
 using Ventas_Domain.DTOs.CarroDtos;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -36,9 +37,9 @@ namespace Ventas_API.Controllers
         }
        
         [HttpPost]
-        public void Post(int UsuarioId)
+        public Response Post(int UsuarioId)
         {
-                service.CreateCarro(UsuarioId);
+                return service.CreateCarro(UsuarioId);
             
         }
 

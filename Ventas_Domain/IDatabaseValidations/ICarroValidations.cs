@@ -7,5 +7,7 @@ namespace Ventas_Domain.IDatabaseValidations
     public interface ICarroValidations
     {
         string ValidateCarroId(int CarroId);
+
+        string ValidateUsuarioId(int UsuarioId);
     }
 }

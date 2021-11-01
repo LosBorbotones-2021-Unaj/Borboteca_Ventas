@@ -8,7 +8,7 @@ namespace Ventas_Domain.Queries
 {
     public interface IVentasQuery
     {
-        ResponseGetVenta GetVentaByIdQuery(int VentaId);
+        Ventas GetVentaByCarroIdQuery(int VentaId);
         List<ResponseGetVenta> GetVentaByFechaIdQuery(string Fecha, string VentaId);
 
     }

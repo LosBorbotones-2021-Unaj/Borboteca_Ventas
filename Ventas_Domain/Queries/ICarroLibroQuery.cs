@@ -7,8 +7,8 @@ using Ventas_Domain.Entities;
 namespace Ventas_Domain.Queries
 {
     public interface ICarroLibroQuery
-    { 
-        
+    {
+        bool GetLibrosByCarroId(int CarroId);
     }
 }
 

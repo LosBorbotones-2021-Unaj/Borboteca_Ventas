@@ -18,14 +18,18 @@ namespace Ventas_Application.Services
     {
         IGenericRepository Repository;
         IVentasQuery Query;
+        ICarroQuery QueryCarro;
+        ICarroLibroQuery QueryCarroLibro;
         IQueryGeneric QueryGeneric;
         ICarroValidations CarroValidateDB;
         IVentasValidations VentasValidationDB;
         List<string> ValidacionesBaseDatos;
-        public VentasService(IGenericRepository _repository, IVentasQuery _query, IQueryGeneric xQueryGeneric, ICarroValidations xCarroValidate,IVentasValidations xVentasValidationDB)
+        public VentasService(IGenericRepository _repository, IVentasQuery _query, ICarroQuery _QueryCarro,ICarroLibroQuery _QueryCarroLibro, IQueryGeneric xQueryGeneric, ICarroValidations xCarroValidate,IVentasValidations xVentasValidationDB)
         {
             Repository = _repository;
             Query = _query;
+            QueryCarro = _QueryCarro;
+            QueryCarroLibro = _QueryCarroLibro;
             QueryGeneric = xQueryGeneric;
             CarroValidateDB = xCarroValidate;
             VentasValidationDB = xVentasValidationDB;
@@ -59,47 +63,58 @@ namespace Ventas_Application.Services
             return Lista;
         }
 
-        public ResponseGetVenta GetVentaById(int Id)
-        {
-            return Query.GetVentaByIdQuery(Id);
+        
 
-        }
-
-        public Response CreateVenta(RequestVenta venta)
+        public Response CreateVenta(int UsuarioId)
         {
-            CreateVentaValidation validator = new CreateVentaValidation();
-            ValidationResult result = validator.Validate(venta);
             ValidacionesBaseDatos = new List<string>();
             var ListaErrores = new List<Object>();
             Ventas entity = null;
   
 
-            if (result.IsValid)
+        
+                ValidacionesBaseDatos.Add(CarroValidateDB.ValidateUsuarioId(UsuarioId));
+
+
+            if (!ValidacionesBaseDatos.Any(Error => Error != null))
             {
-                ValidacionesBaseDatos.Add(CarroValidateDB.ValidateCarroId(venta.CarroId));
 
-                if (!ValidacionesBaseDatos.Any(Error => Error != null)) 
-                { 
-                    string[] FechaString = venta.Fecha.Split('-');
-                    DateTime FechaDatetime = new DateTime(int.Parse(FechaString[0]), int.Parse(FechaString[1]), int.Parse(FechaString[2]));
+                var CarroId = QueryCarro.GetCarroByUsuarioId(UsuarioId);
 
+                if (QueryCarroLibro.GetLibrosByCarroId(CarroId))
+                {
                     entity = new Ventas
                     {
-                        Fecha = FechaDatetime,
-                        Comprobante = venta.Comprobante,
-                        estado = venta.estado,
-                        CarroId = venta.CarroId
+                        Fecha = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day),
+                        Comprobante = null,
+                        estado = true,
+                        CarroId = CarroId
                     };
 
                     Repository.Add<Ventas>(entity);
-                }
-                else ListaErrores.AddRange(ValidacionesBaseDatos.Where(Error => Error != null));
-            }
-            else result.Errors.ForEach(Error => ListaErrores.Add(Error.ErrorMessage.ToString()));
 
-            if(ListaErrores.Count != 0 ) return new Response{ IsValid =false, Errors=ListaErrores };
+
+                }
+                else return new Response { };
+            }
+            else ListaErrores.AddRange(ValidacionesBaseDatos.Where(Error => Error != null));
+
+            if (ListaErrores.Count != 0 ) return new Response{ IsValid =false, Errors=ListaErrores };
 
             return new Response { entity = "Ventas", Id = entity.Id.ToString(),Errors=null,IsValid = true };
+
+        }
+
+        public Ventas VentaCerrada(int UsuarioId)
+        {
+            var CarroId = QueryCarro.GetCarroByUsuarioId(UsuarioId);
+
+            var ResponseVenta = Query.GetVentaByCarroIdQuery(CarroId);
+
+            Repository.Update(ResponseVenta.Id, ResponseVenta);
+
+            return ResponseVenta;
+
 
         }
 

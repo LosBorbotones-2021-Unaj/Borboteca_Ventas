@@ -12,5 +12,7 @@ namespace Ventas_Domain.Queries
         ResponseLibrosCarro GetLibrosDelCarroQuery(int Usuarioid);
         bool VerificarCarroActivo(int usuarioId);
         void UpdateCarroActivoQuery(int usuarioId);
+
+        int GetCarroByUsuarioId(int UsuarioId);
     }
 }

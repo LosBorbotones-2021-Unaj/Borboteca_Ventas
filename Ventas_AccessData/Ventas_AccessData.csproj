@@ -21,8 +21,4 @@
     <ProjectReference Include="..\Ventas_Domain\Ventas_Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Validations\VentasValidations\" />
-  </ItemGroup>
-
 </Project>

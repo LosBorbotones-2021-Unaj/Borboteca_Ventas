@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Ventas_Domain.DTOs.VentasDtos
 {
@@ -13,6 +14,12 @@ namespace Ventas_Domain.DTOs.VentasDtos
         public string Comprobante { get; set; }
 
         public Boolean estado { get; set; }
+
+        [JsonIgnore]
+        public bool IsValid { get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public List<Object> Errors { get; set; }
 
         public GetVentaByIdCarro Carro { get; set; }
     }

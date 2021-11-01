@@ -43,7 +43,8 @@ namespace Ventas_AccessData.Queries
                 Fecha = Venta.Fecha.ToShortDateString(),
                 Comprobante = Venta.Comprobante,
                 estado = Venta.estado,
-                Carro = carro
+                Carro = carro,
+                IsValid = true
             };
 
 
@@ -51,7 +52,7 @@ namespace Ventas_AccessData.Queries
 
 
 
-        public List<ResponseGetVenta> GetVentaByFechaIdQuery(string Fecha, string VentaId)
+        public List<ResponseGetVenta> GetVentaByFechaIdQuery(string Fecha, string estado)
         {
             DateTime FechaDatetime = new DateTime();
             if (!string.IsNullOrWhiteSpace(Fecha))
@@ -66,7 +67,7 @@ namespace Ventas_AccessData.Queries
 
             var Ventas = (db.Query("Ventas")
                                 .Select("Ventas.Id", "Ventas.Fecha", "Ventas.Comprobante", "Ventas.estado", "Ventas.CarroId")
-                                .When(!string.IsNullOrWhiteSpace(VentaId), P => P.Where("Ventas.Id", "=", int.Parse(VentaId)))
+                                .When(!string.IsNullOrWhiteSpace(estado), P => P.Where("Ventas.estado", "=", estado))
                                 .When(!string.IsNullOrWhiteSpace(Fecha), x => x.Where("Ventas.Fecha", "=", FechaDatetime))).Get<Ventas>().ToList();
 
 

@@ -19,46 +19,44 @@ namespace Ventas_Application.Services
         IGenericRepository Repository;
         IVentasQuery Query;
         IQueryGeneric QueryGeneric;
-        ICarroValidations CarroValidate;
+        ICarroValidations CarroValidateDB;
+        IVentasValidations VentasValidationDB;
         List<string> ValidacionesBaseDatos;
-        public VentasService(IGenericRepository _repository, IVentasQuery _query, IQueryGeneric xQueryGeneric, ICarroValidations xCarroValidate)
+        public VentasService(IGenericRepository _repository, IVentasQuery _query, IQueryGeneric xQueryGeneric, ICarroValidations xCarroValidate,IVentasValidations xVentasValidationDB)
         {
             Repository = _repository;
             Query = _query;
             QueryGeneric = xQueryGeneric;
-            CarroValidate = xCarroValidate;
+            CarroValidateDB = xCarroValidate;
+            VentasValidationDB = xVentasValidationDB;
         }
+     
 
-
-
-        public List<ResponseAllVentas> GetAllVentas()
+        public List<ResponseGetVenta> GetVentaByFechaId(string Fecha, string estado)
         {
+            VentaByFechaIDValidation validator = new VentaByFechaIDValidation();
+            ValidationResult result = validator.Validate(new VentasValidate(Fecha,estado));
+            ValidacionesBaseDatos = new List<string>();
+            var ListaErrores = new List<Object>();
+            var Lista = new List<ResponseGetVenta>();
 
-            List<ResponseAllVentas> ListaVentasResponse = new List<ResponseAllVentas>();
-            var ListaVentas = QueryGeneric.GetAll<Ventas>();
-
-            foreach (var Venta in ListaVentas)
+            if (result.IsValid)
             {
-                ListaVentasResponse.Add(new ResponseAllVentas
+                ValidacionesBaseDatos.Add(VentasValidationDB.ValidateFechaVenta(Fecha));
+
+                if (!ValidacionesBaseDatos.Any(Error => Error != null))
                 {
-                    Id = Venta.Id,
-                    Fecha = Venta.Fecha.ToShortDateString(),
-                    Comprobante = Venta.Comprobante,
-                    estado = Venta.estado,
-                    CarroId = Venta.CarroId
+                   Lista =  Query.GetVentaByFechaIdQuery(Fecha, estado);
+                }
 
-                });
-
+                else ListaErrores.AddRange(ValidacionesBaseDatos.Where(Error => Error != null));
             }
-            return ListaVentasResponse;
+            else result.Errors.ForEach(Error => ListaErrores.Add(Error.ErrorMessage.ToString()));
 
-        }
 
-        public List<ResponseGetVenta> GetVentaByFechaId(string Fecha, string VentaId)
-        {
-
-            return Query.GetVentaByFechaIdQuery(Fecha, VentaId);
-
+            if (ListaErrores.Count != 0) Lista.Add(new ResponseGetVenta { IsValid = false, Errors = ListaErrores });
+                          
+            return Lista;
         }
 
         public ResponseGetVenta GetVentaById(int Id)
@@ -78,7 +76,7 @@ namespace Ventas_Application.Services
 
             if (result.IsValid)
             {
-                ValidacionesBaseDatos.Add(CarroValidate.ValidateCarroId(venta.CarroId));
+                ValidacionesBaseDatos.Add(CarroValidateDB.ValidateCarroId(venta.CarroId));
 
                 if (!ValidacionesBaseDatos.Any(Error => Error != null)) 
                 { 

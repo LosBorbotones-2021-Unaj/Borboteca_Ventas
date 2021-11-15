@@ -27,10 +27,10 @@ namespace Ventas_AccessData.Queries
         {
            
 
-            var Libros =    (from CL in context.CarroLibro             
-                             where CL.Carroid == CarroId
-                             group CL by CL.Carroid into Ids
-                             select new { LibrosDeLCarro = Ids.Count() }).FirstOrDefault();
+            var Libros =(from CL in context.CarroLibro             
+                        where CL.Carroid == CarroId
+                        group CL by CL.Carroid into Ids
+                        select new { LibrosDeLCarro = Ids.Count() }).FirstOrDefault();
 
             if (Libros == null) return true;
 

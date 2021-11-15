@@ -73,20 +73,20 @@ namespace Ventas_Application.Services
   
 
         
-                ValidacionesBaseDatos.Add(CarroValidateDB.ValidateUsuarioId(UsuarioId));
+           ValidacionesBaseDatos.Add(CarroValidateDB.ValidateUsuarioId(UsuarioId));
 
 
             if (!ValidacionesBaseDatos.Any(Error => Error != null))
             {
 
                 var CarroId = QueryCarro.GetCarroByUsuarioId(UsuarioId);
-
+                
                 if (QueryCarroLibro.GetLibrosByCarroId(CarroId))
                 {
                     entity = new Ventas
                     {
                         Fecha = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day),
-                        Comprobante = null,
+                        Comprobante = "",
                         estado = true,
                         CarroId = CarroId
                     };

@@ -64,10 +64,10 @@ namespace Ventas_API.Controllers
         }
 
         // PUT api/<CarroController>/5
-        [HttpPut("{VentaId}")]
-        public Ventas Put(int VentaId)
+        [HttpPut("{UsuarioId}")]
+        public Ventas Put(int UsuarioId)
         {
-            return service.VentaCerrada(VentaId);
+            return service.VentaCerrada(UsuarioId);
         }
     }
 }

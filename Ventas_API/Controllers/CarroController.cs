@@ -20,7 +20,7 @@ namespace Ventas_API.Controllers
         {
             service = xservice;
         }
-       
+
 
         // GET: api/<CarroController>
         [HttpGet("{Usuarioid}")]
@@ -35,16 +35,16 @@ namespace Ventas_API.Controllers
                 return BadRequest(e.Message);
             }
         }
-       
+
         [HttpPost]
         public Response Post(int UsuarioId)
         {
-                return service.CreateCarro(UsuarioId);
-            
+            return service.CreateCarro(UsuarioId);
+
         }
 
         // PUT api/<CarroController>/5
-        [HttpPut]
+        [HttpPut("{UsuarioId}")]
         public void Put(int UsuarioId)
         {
             service.UpdateCarroActivo(UsuarioId);

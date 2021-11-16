@@ -15,7 +15,7 @@ namespace Ventas_Domain.DTOs
         public string Id { get; set; }
 
 
-        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+     
         public string entity { get; set; }
 
 

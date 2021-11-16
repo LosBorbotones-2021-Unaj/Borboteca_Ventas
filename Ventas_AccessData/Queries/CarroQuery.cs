@@ -36,16 +36,21 @@ namespace Ventas_AccessData.Queries
                         .Select("Id", "Valor", "Activo", "UsuarioId")
                         .Where("UsuarioId", "=", Usuarioid)
                         .Where("Activo", "=", true).FirstOrDefault<Carro>();
-
-            var ListaLibros = context.CarroLibro.Where(w => w.Carroid == Carro.Id).Select(c => c.Libroid).ToList();
-
-            // var ListaCarroLibro = db.Query("CarroLibro").Select( "LibroId").Where("CarroId", "=", Carro.Id).Get<GetCarroLibroByCarroId>().ToList();
-            return new ResponseLibrosCarro
+            if (Carro != null)
             {
-                LibrosIds = ListaLibros,
-                ValorTotalCarro = Carro.Valor
+                var ListaLibros = context.CarroLibro.Where(w => w.Carroid == Carro.Id).Select(c => c.Libroid).ToList();
 
-            };
+
+                return new ResponseLibrosCarro
+                {
+                    LibrosIds = ListaLibros,
+                    ValorTotalCarro = Carro.Valor
+
+                };
+            }
+            else return new ResponseLibrosCarro { };
+                
+            
         }
 
         public bool VerificarCarroActivo(int UsuarioId)

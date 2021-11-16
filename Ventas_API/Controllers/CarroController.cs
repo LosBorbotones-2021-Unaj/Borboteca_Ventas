@@ -32,14 +32,14 @@ namespace Ventas_API.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e.Message);
+                return new JsonResult(e.Message) { StatusCode = 400 };
             }
         }
 
         [HttpPost]
-        public Response Post(int UsuarioId)
+        public IActionResult Post(int UsuarioId)
         {
-            return service.CreateCarro(UsuarioId);
+            return new JsonResult(service.CreateCarro(UsuarioId)) { StatusCode = 201 };
 
         }
 

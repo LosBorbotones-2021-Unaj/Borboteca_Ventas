@@ -95,7 +95,7 @@ namespace Ventas_Application.Services
 
 
                 }
-                else return new Response { };
+                else return new Response { IsValid = true };
             }
             else ListaErrores.AddRange(ValidacionesBaseDatos.Where(Error => Error != null));
 

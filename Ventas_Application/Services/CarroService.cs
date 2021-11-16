@@ -55,7 +55,6 @@ namespace Ventas_Application.Services
             
             query.UpdateCarroActivoQuery(UsuarioId);
 
-            CreateCarro(UsuarioId);
         }
     }
 }

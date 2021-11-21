@@ -78,7 +78,11 @@ namespace Ventas_API
             });
 
             //JWT
+<<<<<<< HEAD
            /* var key = Encoding.ASCII.GetBytes(Configuration.GetSection("JwtSettings:Secret").Value);
+=======
+            var key = Encoding.ASCII.GetBytes(Configuration.GetSection("JwtSettings:Secret").Value);
+>>>>>>> master
             services.AddAuthentication(au =>
             {
                 au.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -96,7 +100,11 @@ namespace Ventas_API
                 };
             });
 
+<<<<<<< HEAD
             */
+=======
+            
+>>>>>>> master
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

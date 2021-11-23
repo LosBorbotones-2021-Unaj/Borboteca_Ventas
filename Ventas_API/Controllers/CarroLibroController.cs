@@ -27,17 +27,20 @@ namespace Ventas_API.Controllers
         {
             try
             {
-                return new JsonResult(service.CreateCarroLibro(Carro)) { StatusCode = 201 };
+                var Response = service.CreateCarroLibro(Carro);
+                if (Response.IsValid) return new JsonResult(Response) { StatusCode = 201 };
+
+                else return new JsonResult(Response.Errors) { StatusCode = 400 };
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
         }
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        [HttpDelete]
+        public IActionResult Delete(RequestCarroLibro CarroLibro)
         {
-            return new JsonResult (service.DeleteCarroLibro(id)) { StatusCode = 201 };
+            return new JsonResult (service.DeleteCarroLibro(CarroLibro)) { StatusCode = 201 };
         }
 
     }

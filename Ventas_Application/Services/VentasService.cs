@@ -19,27 +19,25 @@ namespace Ventas_Application.Services
         IGenericRepository Repository;
         IVentasQuery Query;
         ICarroQuery QueryCarro;
-        ICarroLibroQuery QueryCarroLibro;
         IQueryGeneric QueryGeneric;
         ICarroValidations CarroValidateDB;
         IVentasValidations VentasValidationDB;
         List<string> ValidacionesBaseDatos;
-        public VentasService(IGenericRepository _repository, IVentasQuery _query, ICarroQuery _QueryCarro,ICarroLibroQuery _QueryCarroLibro, IQueryGeneric xQueryGeneric, ICarroValidations xCarroValidate,IVentasValidations xVentasValidationDB)
+        public VentasService(IGenericRepository _repository, IVentasQuery _query, ICarroQuery _QueryCarro, IQueryGeneric xQueryGeneric, ICarroValidations xCarroValidate, IVentasValidations xVentasValidationDB)
         {
             Repository = _repository;
             Query = _query;
             QueryCarro = _QueryCarro;
-            QueryCarroLibro = _QueryCarroLibro;
             QueryGeneric = xQueryGeneric;
             CarroValidateDB = xCarroValidate;
             VentasValidationDB = xVentasValidationDB;
         }
-     
+
 
         public List<ResponseGetVenta> GetVentaByFechaId(string Fecha, string estado)
         {
             VentaByFechaIDValidation validator = new VentaByFechaIDValidation();
-            ValidationResult result = validator.Validate(new VentasValidate(Fecha,estado));
+            ValidationResult result = validator.Validate(new VentasValidate(Fecha, estado));
             ValidacionesBaseDatos = new List<string>();
             var ListaErrores = new List<Object>();
             var Lista = new List<ResponseGetVenta>();
@@ -50,7 +48,7 @@ namespace Ventas_Application.Services
 
                 if (!ValidacionesBaseDatos.Any(Error => Error != null))
                 {
-                   Lista =  Query.GetVentaByFechaIdQuery(Fecha, estado);
+                    Lista = Query.GetVentaByFechaIdQuery(Fecha, estado);
                 }
 
                 else ListaErrores.AddRange(ValidacionesBaseDatos.Where(Error => Error != null));
@@ -59,29 +57,29 @@ namespace Ventas_Application.Services
 
 
             if (ListaErrores.Count != 0) Lista.Add(new ResponseGetVenta { IsValid = false, Errors = ListaErrores });
-                          
+
             return Lista;
         }
 
-        
+
 
         public Response CreateVenta(int UsuarioId)
         {
             ValidacionesBaseDatos = new List<string>();
             var ListaErrores = new List<Object>();
             Ventas entity = null;
-  
 
-        
-           ValidacionesBaseDatos.Add(CarroValidateDB.ValidateUsuarioId(UsuarioId));
+
+
+            ValidacionesBaseDatos.Add(CarroValidateDB.ValidateUsuarioId(UsuarioId));
 
 
             if (!ValidacionesBaseDatos.Any(Error => Error != null))
             {
 
                 var CarroId = QueryCarro.GetCarroByUsuarioId(UsuarioId);
-                
-                if (QueryCarroLibro.GetLibrosByCarroId(CarroId))
+
+                if (Query.ExistVentaActive(CarroId))  
                 {
                     entity = new Ventas
                     {
@@ -99,9 +97,9 @@ namespace Ventas_Application.Services
             }
             else ListaErrores.AddRange(ValidacionesBaseDatos.Where(Error => Error != null));
 
-            if (ListaErrores.Count != 0 ) return new Response{ IsValid =false, Errors=ListaErrores };
+            if (ListaErrores.Count != 0) return new Response { IsValid = false, Errors = ListaErrores };
 
-            return new Response { entity = "Ventas", Id = entity.Id.ToString(),Errors=null,IsValid = true };
+            return new Response { entity = "Ventas", Id = entity.Id.ToString(), Errors = null, IsValid = true };
 
         }
 
@@ -118,5 +116,29 @@ namespace Ventas_Application.Services
 
         }
 
+        public Response DeleteVenta(int UsuarioId)
+        {
+            ValidacionesBaseDatos = new List<string>();
+            var ListaErrores = new List<Object>();
+
+
+            ValidacionesBaseDatos.Add(CarroValidateDB.ValidateUsuarioId(UsuarioId));
+
+
+            if (!ValidacionesBaseDatos.Any(Error => Error != null))
+            {
+                var CarroId = QueryCarro.GetCarroByUsuarioId(UsuarioId);
+
+                var ResponseVenta = Query.GetVentaByCarroIdQuery(CarroId);
+
+                Repository.Delete<Ventas>(ResponseVenta.Id);
+
+                return new Response { IsValid = true };
+            }
+            else ListaErrores.AddRange(ValidacionesBaseDatos);
+
+            return new Response { IsValid = false, Errors = ListaErrores };
+
+        }
     }
 }

@@ -23,6 +23,15 @@ namespace Ventas_AccessData.Queries
             context = dbContext;
         }
 
+        public bool ExistVentaActive(int CarroId)
+        {
+            var Venta = context.Ventas.Where(V => V.CarroId == CarroId).FirstOrDefault();
+
+            if (Venta != null) return false;
+
+            return true;
+        }
+
         public Ventas GetVentaByCarroIdQuery(int CarroId)
         {
             var db = new QueryFactory(connection, sklKataCompiler);

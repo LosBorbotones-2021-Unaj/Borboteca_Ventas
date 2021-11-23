@@ -49,11 +49,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Domain\\Ventas_Domain.csproj",
+      "projectUniqueName": "F:\\Borboteca_Ventas_Final\\Borboteca_Ventas\\Ventas_Domain\\Ventas_Domain.csproj",
       "projectName": "Ventas_Domain",
-      "projectPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Domain\\Ventas_Domain.csproj",
+      "projectPath": "F:\\Borboteca_Ventas_Final\\Borboteca_Ventas\\Ventas_Domain\\Ventas_Domain.csproj",
       "packagesPath": "C:\\Users\\Tomi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Domain\\obj\\",
+      "outputPath": "F:\\Borboteca_Ventas_Final\\Borboteca_Ventas\\Ventas_Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"

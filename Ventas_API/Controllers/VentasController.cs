@@ -57,10 +57,14 @@ namespace Ventas_API.Controllers
 
        
         // DELETE api/<VentasController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{Usuarioid}")]
+        public IActionResult Delete(int Usuarioid)
         {
-            
+            var Response = service.DeleteVenta(Usuarioid);
+
+            if (Response.IsValid) return new JsonResult(Response) { StatusCode = 200 };
+
+            else return new JsonResult(Response.Errors) { StatusCode = 404 };
         }
 
         // PUT api/<CarroController>/5

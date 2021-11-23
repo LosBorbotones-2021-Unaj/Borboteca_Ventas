@@ -23,6 +23,11 @@ namespace Ventas_AccessData.Queries
             context = dbContext;
         }
 
+        public CarroLibro GetCarroLibro(int CarroId, Guid Libroid)
+        {
+            return context.CarroLibro.Where(CL => CL.Carroid == CarroId && CL.Libroid == Libroid).FirstOrDefault();
+        }
+
         public bool GetLibrosByCarroId(int CarroId)
         {
            

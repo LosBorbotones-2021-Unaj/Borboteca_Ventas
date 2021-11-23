@@ -13,5 +13,7 @@ namespace Ventas_Application.Services.Interface_Service
         Response CreateVenta(int UsuarioId);
 
         Ventas VentaCerrada(int VentaId);
+
+        Response DeleteVenta(int UsuarioId);
     }
 }

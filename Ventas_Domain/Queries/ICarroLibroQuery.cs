@@ -9,6 +9,8 @@ namespace Ventas_Domain.Queries
     public interface ICarroLibroQuery
     {
         bool GetLibrosByCarroId(int CarroId);
+
+        CarroLibro GetCarroLibro(int CarroId, Guid Libroid);
     }
 }
 

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HriMcrLJGh0qx1YQ9ZSR/GxnAAWGIVydbUx/zDQLX9qg0xKJ+CNKIpK0SF1yNBGGcjvDDsV2JG6RaxivBFjUxQ==",
+  "dgSpecHash": "LexTVdQmvh+cjA4y5qkFqWB37xutY1rPWDJeqPRILC/Cos3ojLVTaarotzcsaP9sDowqzhv8isLpVI8fqUOvQQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_API\\Ventas_API.csproj",
+  "projectFilePath": "F:\\Borboteca_Ventas_Final\\Borboteca_Ventas\\Ventas_API\\Ventas_API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tomi\\.nuget\\packages\\dapper\\1.50.5\\dapper.1.50.5.nupkg.sha512",
     "C:\\Users\\Tomi\\.nuget\\packages\\fluentvalidation\\10.3.4\\fluentvalidation.10.3.4.nupkg.sha512",

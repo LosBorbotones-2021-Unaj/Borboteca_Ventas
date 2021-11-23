@@ -7,9 +7,9 @@ using Ventas_Domain.DTOs.CarroLibroDtos;
 namespace Ventas_Application.Services.Interface_Service
 {
     public interface ICarroLibroService
-    { 
+    {
         Response CreateCarroLibro(RequestCarroLibro carroLibro);
-        Response DeleteCarroLibro(int Id);
+        Response DeleteCarroLibro(RequestCarroLibro CarroLibro);
 
     }
 }

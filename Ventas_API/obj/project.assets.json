@@ -6134,11 +6134,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_API\\Ventas_API.csproj",
+      "projectUniqueName": "F:\\Borboteca_Ventas_Final\\Borboteca_Ventas\\Ventas_API\\Ventas_API.csproj",
       "projectName": "Ventas_API",
-      "projectPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_API\\Ventas_API.csproj",
+      "projectPath": "F:\\Borboteca_Ventas_Final\\Borboteca_Ventas\\Ventas_API\\Ventas_API.csproj",
       "packagesPath": "C:\\Users\\Tomi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_API\\obj\\",
+      "outputPath": "F:\\Borboteca_Ventas_Final\\Borboteca_Ventas\\Ventas_API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
@@ -6159,11 +6159,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_AccessData\\Ventas_AccessData.csproj": {
-              "projectPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_AccessData\\Ventas_AccessData.csproj"
+            "F:\\Borboteca_Ventas_Final\\Borboteca_Ventas\\Ventas_AccessData\\Ventas_AccessData.csproj": {
+              "projectPath": "F:\\Borboteca_Ventas_Final\\Borboteca_Ventas\\Ventas_AccessData\\Ventas_AccessData.csproj"
             },
-            "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Application\\Ventas_Application.csproj": {
-              "projectPath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Application\\Ventas_Application.csproj"
+            "F:\\Borboteca_Ventas_Final\\Borboteca_Ventas\\Ventas_Application\\Ventas_Application.csproj": {
+              "projectPath": "F:\\Borboteca_Ventas_Final\\Borboteca_Ventas\\Ventas_Application\\Ventas_Application.csproj"
             }
           }
         }

@@ -9,5 +9,7 @@ namespace Ventas_Domain.IDatabaseValidations
         string ValidateCarroId(int CarroId);
 
         string ValidateUsuarioId(int UsuarioId);
+
+        
     }
 }

@@ -14,5 +14,7 @@ namespace Ventas_Domain.Queries
         void UpdateCarroActivoQuery(int usuarioId);
 
         int GetCarroByUsuarioId(int UsuarioId);
+
+       
     }
 }

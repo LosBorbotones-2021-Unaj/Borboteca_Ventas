@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HyYwzAGBKPvVxcgaMq39mGAjKPIXpqC7Xdi84K7TUJHudaGff0gw7W3xJiWy8MGsdtScVKPjHpV3ttFrtUzu6A==",
+  "dgSpecHash": "c6XbdmEQSRrjZ8DbyOvGpNzNUdb6laYtyPM0JLsSQeS/Qbfd4QtTMcBIYqCbMHcR/fk2R9JP/xkE/+N3tw+tng==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tomi\\Desktop\\Borboteca_Ventas\\Borboteca_Ventas\\Ventas_Domain\\Ventas_Domain.csproj",
+  "projectFilePath": "F:\\Borboteca_Ventas_Final\\Borboteca_Ventas\\Ventas_Domain\\Ventas_Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tomi\\.nuget\\packages\\system.text.json\\5.0.2\\system.text.json.5.0.2.nupkg.sha512"
   ],

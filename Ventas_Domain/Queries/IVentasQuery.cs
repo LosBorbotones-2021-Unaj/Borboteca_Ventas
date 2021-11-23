@@ -10,6 +10,6 @@ namespace Ventas_Domain.Queries
     {
         Ventas GetVentaByCarroIdQuery(int VentaId);
         List<ResponseGetVenta> GetVentaByFechaIdQuery(string Fecha, string VentaId);
-
+        bool ExistVentaActive(int CarroId);
     }
 }

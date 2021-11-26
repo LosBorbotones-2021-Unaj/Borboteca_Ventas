@@ -37,7 +37,7 @@ namespace Ventas_API.Controllers
                 return BadRequest(e.Message);
             }
         }
-        [HttpDelete]
+        [HttpDelete("EliminarLibro/")]
         public IActionResult Delete(RequestCarroLibro CarroLibro)
         {
             return new JsonResult (service.DeleteCarroLibro(CarroLibro)) { StatusCode = 201 };

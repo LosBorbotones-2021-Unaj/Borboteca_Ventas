@@ -80,7 +80,6 @@ namespace Ventas_API
             });
 
             //JWT
-        /*
             var key = Encoding.ASCII.GetBytes(Configuration.GetSection("JwtSettings:Secret").Value);
             services.AddAuthentication(au =>
             {
@@ -99,7 +98,6 @@ namespace Ventas_API
                 };
             });
 
-            */
 
 
         }

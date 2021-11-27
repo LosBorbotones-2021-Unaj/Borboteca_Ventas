@@ -50,6 +50,12 @@ namespace Ventas_Application.Services
             return query.GetLibrosDelCarroQuery(Usuarioid);
         }
 
+        public ResponseLibrosCarro GetMisLibros(int UsuarioId)
+        {
+            return query.GetMisLibrosQuery(UsuarioId);            
+
+        }
+
         public void UpdateCarroActivo(int UsuarioId)
         {
             

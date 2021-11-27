@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,8 @@ using Ventas_Domain.DTOs.CarroDtos;
 
 namespace Ventas_API.Controllers
 {
+
+    
     [Route("api/[controller]")]
     [ApiController]
     public class CarroController : ControllerBase
@@ -19,6 +23,21 @@ namespace Ventas_API.Controllers
         public CarroController(ICarroService xservice)
         {
             service = xservice;
+        }
+
+
+        // GET: api/<CarroController>
+        [HttpGet("Mislibros/{Usuarioid}")]
+        public IActionResult MisLibros(int Usuarioid)
+        {
+            try
+            {
+                return new JsonResult(service.GetMisLibros(Usuarioid)) { StatusCode = 200 };
+            }
+            catch (Exception e)
+            {
+                return new JsonResult(e.Message) { StatusCode = 400 };
+            }
         }
 
 
@@ -36,6 +55,7 @@ namespace Ventas_API.Controllers
             }
         }
 
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost]
         public IActionResult Post(int UsuarioId)
         {
@@ -44,6 +64,7 @@ namespace Ventas_API.Controllers
         }
 
         // PUT api/<CarroController>/5
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPut("{UsuarioId}")]
         public void Put(int UsuarioId)
         {

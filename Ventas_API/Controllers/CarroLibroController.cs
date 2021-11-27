@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +12,7 @@ using Ventas_Domain.DTOs.CarroLibroDtos;
 
 namespace Ventas_API.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class CarroLibroController : ControllerBase
@@ -19,9 +22,10 @@ namespace Ventas_API.Controllers
         {
             service = xservice;
         }
-        
+
 
         // POST api/<CarroLibroController>
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost]
         public IActionResult Post(RequestCarroLibro Carro)
         {
@@ -37,6 +41,8 @@ namespace Ventas_API.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpDelete("EliminarLibro/")]
         public IActionResult Delete(RequestCarroLibro CarroLibro)
         {

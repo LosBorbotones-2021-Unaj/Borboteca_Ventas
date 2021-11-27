@@ -11,6 +11,7 @@ namespace Ventas_Application.Services.Interface_Service
         Response CreateCarro(int UsuarioId);
         ResponseLibrosCarro GetLibrosDelCarro(int Usuarioid);
 
+        ResponseLibrosCarro GetMisLibros(int UsuarioId);
         void UpdateCarroActivo(int UsuarioId);
     }
 }

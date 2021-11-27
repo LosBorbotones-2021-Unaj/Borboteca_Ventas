@@ -83,5 +83,21 @@ namespace Ventas_AccessData.Queries
             int CarroId = context.Carro.Where(c => c.Usuarioid == UsuarioId).Where(c => c.Activo == true).Select(C => C.Id).FirstOrDefault();
             return CarroId;
         }
+
+        public ResponseLibrosCarro GetMisLibrosQuery(int Usuarioid)
+        {
+
+            var MisLibros = (from C in context.Carro
+                             join CL in context.CarroLibro on C.Id equals CL.Carroid
+                             into union_C_CL
+                             from C_CL in union_C_CL.DefaultIfEmpty()
+                             where C.Usuarioid == Usuarioid && C.Activo == false
+                             group C_CL by C_CL.Libroid into Ids
+                             select Ids.Key).ToList();
+
+
+            return new ResponseLibrosCarro { LibrosIds = MisLibros };
+        }
+
     }
 }

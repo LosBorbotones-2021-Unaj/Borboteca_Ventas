@@ -1,5 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,7 @@ using Ventas_Domain.Entities;
 
 namespace Ventas_API.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     public class VentasController : ControllerBase
@@ -43,6 +46,7 @@ namespace Ventas_API.Controllers
 
 
         // POST api/<VentasController>
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost]
         public IActionResult Post(int UsuarioId)
         {
@@ -55,8 +59,9 @@ namespace Ventas_API.Controllers
 
         }
 
-       
+
         // DELETE api/<VentasController>/5
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpDelete("{Usuarioid}")]
         public IActionResult Delete(int Usuarioid)
         {
@@ -68,6 +73,7 @@ namespace Ventas_API.Controllers
         }
 
         // PUT api/<CarroController>/5
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPut("{UsuarioId}")]
         public Ventas Put(int UsuarioId)
         {

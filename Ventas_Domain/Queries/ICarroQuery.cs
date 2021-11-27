@@ -10,9 +10,10 @@ namespace Ventas_Domain.Queries
     public interface ICarroQuery
     {
         ResponseLibrosCarro GetLibrosDelCarroQuery(int Usuarioid);
-        bool VerificarCarroActivo(int usuarioId);
-        void UpdateCarroActivoQuery(int usuarioId);
+        bool VerificarCarroActivo(int Usuarioid);
+        void UpdateCarroActivoQuery(int Usuarioid);
 
+        ResponseLibrosCarro GetMisLibrosQuery(int Usuarioid);
         int GetCarroByUsuarioId(int UsuarioId);
 
        

@@ -13,7 +13,6 @@ namespace Ventas_AccessData.Validations.VentasValidations
         public VentaByFechaIDValidation()
         {
             RuleFor(x => x.Fecha).Must(FechaValidation).WithMessage("La fecha ingresada no tiene el formato correcto(yyyy-MM-dd)");
-            RuleFor(x => x.Fecha).NotEmpty().NotNull().WithMessage("La fecha no puede ser nula");
         }
         public bool FechaValidation(string Fecha)
         {

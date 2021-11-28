@@ -24,10 +24,14 @@ namespace Ventas_AccessData.Validations.VentasValidations
 
         public string ValidateFechaVenta(string Fecha)
         {
-            DateTime FechaDateTime;
-            SimpleDateFormat Formato = new SimpleDateFormat("yyyy-mm-dd");
-            FechaDateTime = Formato.Parse(Fecha);
-            if (!Context.Ventas.Any(V => V.Fecha == FechaDateTime)) return "La fecha que ingreso no esta asignada a ninguna venta";
+            if (Fecha != null) 
+            {
+                DateTime FechaDateTime;
+                SimpleDateFormat Formato = new SimpleDateFormat("yyyy-mm-dd");
+                FechaDateTime = Formato.Parse(Fecha);
+                if (!Context.Ventas.Any(V => V.Fecha == FechaDateTime)) return "La fecha que ingreso no esta asignada a ninguna venta";
+                else return null;
+            }
             else return null;
         }
         

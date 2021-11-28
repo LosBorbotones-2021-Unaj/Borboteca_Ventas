@@ -9,11 +9,13 @@ namespace Ventas_Application.Services.Interface_Service
 {
     public interface IVentasService
     {
-        List<ResponseGetVenta> GetVentaByFechaId(string fecha, string estado);
+        List<ResponseGetVenta> GetVentasByFechaEstado(int UsuarioId,string fecha, string estado);
         Response CreateVenta(int UsuarioId);
 
         Ventas VentaCerrada(int VentaId);
 
         Response DeleteVenta(int UsuarioId);
+
+        List<string> GetAllVentas(int UsuarioId);
     }
 }

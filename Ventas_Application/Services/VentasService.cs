@@ -34,13 +34,13 @@ namespace Ventas_Application.Services
         }
 
 
-        public List<ResponseGetVenta> GetVentaByFechaId(string Fecha, string estado)
+        public List<ResponseGetVenta> GetVentasByFechaEstado(int UsuarioId,string Fecha, string estado)
         {
             VentaByFechaIDValidation validator = new VentaByFechaIDValidation();
             ValidationResult result = validator.Validate(new VentasValidate(Fecha, estado));
             ValidacionesBaseDatos = new List<string>();
             var ListaErrores = new List<Object>();
-            var Lista = new List<ResponseGetVenta>();
+            var ListaResponseVentas = new List<ResponseGetVenta>();
 
             if (result.IsValid)
             {
@@ -48,7 +48,7 @@ namespace Ventas_Application.Services
 
                 if (!ValidacionesBaseDatos.Any(Error => Error != null))
                 {
-                    Lista = Query.GetVentaByFechaIdQuery(Fecha, estado);
+                    ListaResponseVentas = Query.GetVentaByFechaEstadoQuery(UsuarioId, Fecha, estado);
                 }
 
                 else ListaErrores.AddRange(ValidacionesBaseDatos.Where(Error => Error != null));
@@ -56,9 +56,9 @@ namespace Ventas_Application.Services
             else result.Errors.ForEach(Error => ListaErrores.Add(Error.ErrorMessage.ToString()));
 
 
-            if (ListaErrores.Count != 0) Lista.Add(new ResponseGetVenta { IsValid = false, Errors = ListaErrores });
+            if (ListaErrores.Count != 0) ListaResponseVentas.Add(new ResponseGetVenta { IsValid = false, Errors = ListaErrores });
 
-            return Lista;
+            return ListaResponseVentas;
         }
 
 
@@ -139,6 +139,11 @@ namespace Ventas_Application.Services
 
             return new Response { IsValid = false, Errors = ListaErrores };
 
+        }
+
+        public List<string> GetAllVentas(int UsuarioId)
+        {
+            return Query.GetAllVentasQuery(UsuarioId);
         }
     }
 }

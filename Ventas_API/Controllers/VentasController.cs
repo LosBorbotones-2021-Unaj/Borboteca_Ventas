@@ -17,7 +17,6 @@ using Ventas_Domain.Entities;
 
 namespace Ventas_API.Controllers
 {
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Route("api/[controller]")]
     [ApiController]
     public class VentasController : ControllerBase
@@ -29,21 +28,30 @@ namespace Ventas_API.Controllers
         }
 
 
-        //GET api/<VentasController>/Query Params
+         //GET api/<VentasController>/Query Params
+         [HttpGet]
+         [Route("MiCompra/{UsuarioId}")]
+         public IActionResult Get(int UsuarioId, [FromQuery] string Fecha, [FromQuery] string estado)
+         {
+             var Lista = service.GetVentasByFechaEstado(UsuarioId, Fecha, estado);
+
+             foreach (var response in Lista)
+                 if (response.Errors != null) return BadRequest(response.Errors);
+
+             return new JsonResult(Lista) { StatusCode = 200 };
+
+         }
+
+        
         [HttpGet]
-        [Route("GetByFechaId")]
-        public IActionResult Get([FromQuery] string Fecha, [FromQuery] string estado)
+        [Route("Compras/{UsuarioId}")]
+        public IActionResult GetAllVentasAPI(int UsuarioId)
         {
-            var Lista = service.GetVentaByFechaId(Fecha, estado);
+            var ListaAllVentas = service.GetAllVentas(UsuarioId);
 
-            foreach (var response in Lista)
-                if (response.Errors != null) return BadRequest(response.Errors);
-
-            return new JsonResult(Lista) { StatusCode = 200 };
+            return new JsonResult(ListaAllVentas) { StatusCode = 200 };
 
         }
-
-
 
         // POST api/<VentasController>
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]

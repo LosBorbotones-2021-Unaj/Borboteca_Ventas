@@ -32,6 +32,8 @@ namespace Ventas_AccessData.Queries
             return true;
         }
 
+        
+
         public Ventas GetVentaByCarroIdQuery(int CarroId)
         {
             var db = new QueryFactory(connection, sklKataCompiler);
@@ -50,8 +52,9 @@ namespace Ventas_AccessData.Queries
         }
 
 
-        public List<ResponseGetVenta> GetVentaByFechaIdQuery(string Fecha, string estado)
+        public List<ResponseGetVenta> GetVentaByFechaEstadoQuery(int UsuarioId, string Fecha, string estado)
         {
+            string mensajeEstado = "";
             DateTime FechaDatetime = new DateTime();
             if (!string.IsNullOrWhiteSpace(Fecha))
             {
@@ -62,37 +65,64 @@ namespace Ventas_AccessData.Queries
             var db = new QueryFactory(connection, sklKataCompiler);
 
             List<ResponseGetVenta> ListaResponseVentas = new List<ResponseGetVenta>();
+            List<int> LibrosId = new List<int>();
+    
 
-            var Ventas = (db.Query("Ventas")
-                                .Select("Ventas.Id", "Ventas.Fecha", "Ventas.Comprobante", "Ventas.estado", "Ventas.CarroId")
-                                .When(!string.IsNullOrWhiteSpace(estado), P => P.Where("Ventas.estado", "=", estado))
-                                .When(!string.IsNullOrWhiteSpace(Fecha), x => x.Where("Ventas.Fecha", "=", FechaDatetime))).Get<Ventas>().ToList();
+            var ListaVentas = (db.Query("Ventas")
+                               .Select("Ventas.Id", "Ventas.Fecha", "Ventas.Comprobante", "Ventas.estado", "Ventas.CarroId")
+                               .Join("Carro", "Carro.Id", "Ventas.CarroId")
+                               .Where("Carro.UsuarioId", "=" ,UsuarioId)
+                               .When(!string.IsNullOrWhiteSpace(estado), P => P.Where("Ventas.estado", "=", estado))
+                               .When(!string.IsNullOrWhiteSpace(Fecha), x => x.Where("Ventas.Fecha", "=", FechaDatetime))).Get<Ventas>().ToList();
 
-
-
-            foreach (var Venta in Ventas)
+            if (ListaVentas != null)
             {
-                var carro = db.Query("Carro")
-                            .Select("Id", "Valor", "Activo", "UsuarioId")
-                            .Where("Id", "=", Venta.CarroId)
-                            .FirstOrDefault<GetVentaByIdCarro>();
-
-                ListaResponseVentas.Add(new ResponseGetVenta
+                foreach (var Venta in ListaVentas)
                 {
 
-                    Id = Venta.Id,
-                    Fecha = Venta.Fecha.ToShortDateString(),
-                    Comprobante = Venta.Comprobante,
-                    estado = Venta.estado,
-                    Carro = carro
+                    var cadaVenta = (from CL in context.CarroLibro
+                                     join C in context.Carro on CL.Carroid equals C.Id
+                                     into union_CL_C
+                                     from CL_C in union_CL_C.DefaultIfEmpty()
+                                     join V in context.Ventas on CL_C.Id equals V.CarroId
+                                     into union_CL_C_V
+                                     from CL_C_V in union_CL_C_V.DefaultIfEmpty()
+                                     where CL_C_V.Id == Venta.Id
+                                     select CL.Libroid).ToList();
 
-                });
+                    if (Venta.estado == false) mensajeEstado = "Finalizada";
+                    else mensajeEstado = "Activa";
+                    ListaResponseVentas.Add(new ResponseGetVenta
+                    {
 
+                        Id = Venta.Id,
+                        Fecha = Venta.Fecha.ToShortDateString(),
+                        Comprobante = Venta.Comprobante,
+                        estado = mensajeEstado,
+                        LibrosId = cadaVenta
+
+                    });
+
+
+                }
 
             }
             return ListaResponseVentas;
 
         }
-       
+
+        public List<string> GetAllVentasQuery(int UsuarioId)
+        {
+            var ListaAllVentas = (from C in context.Carro
+                                  join V in context.Ventas on C.Id equals V.CarroId
+                                  into union_C_V
+                                  from C_V in union_C_V.DefaultIfEmpty()
+                                  where C.Usuarioid == UsuarioId && C_V.CarroId == C.Id
+                                  select C_V.Fecha.ToShortDateString()).DefaultIfEmpty();
+
+            
+            return ListaAllVentas.ToList();
+        }
+
     }
 }

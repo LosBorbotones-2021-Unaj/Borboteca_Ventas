@@ -13,7 +13,7 @@ namespace Ventas_Domain.DTOs.VentasDtos
 
         public string Comprobante { get; set; }
 
-        public Boolean estado { get; set; }
+        public string estado { get; set; }
 
         [JsonIgnore]
         public bool IsValid { get; set; }
@@ -21,6 +21,6 @@ namespace Ventas_Domain.DTOs.VentasDtos
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public List<Object> Errors { get; set; }
 
-        public GetVentaByIdCarro Carro { get; set; }
+        public List<Guid> LibrosId { get; set; }
     }
 }

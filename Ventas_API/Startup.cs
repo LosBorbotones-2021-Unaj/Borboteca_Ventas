@@ -71,7 +71,7 @@ namespace Ventas_API
             //SWAGER
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Borboteca_Libros", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Borboteca_Ventas", Version = "v1" });
             });
 
             services.AddCors(options =>
@@ -109,7 +109,7 @@ namespace Ventas_API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Borboteca_Libros.API v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Borboteca_Ventas.API v1"));
             }
 
             app.UseCors("AnyAllow");

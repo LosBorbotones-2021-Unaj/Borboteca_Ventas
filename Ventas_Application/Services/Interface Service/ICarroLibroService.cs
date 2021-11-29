@@ -8,7 +8,7 @@ namespace Ventas_Application.Services.Interface_Service
 {
     public interface ICarroLibroService
     {
-        Response CreateCarroLibro(RequestCarroLibro carroLibro);
+        ResponseGetCarroLibro CreateCarroLibro(RequestCarroLibro carroLibro);
         Response DeleteCarroLibro(RequestCarroLibro CarroLibro);
 
     }

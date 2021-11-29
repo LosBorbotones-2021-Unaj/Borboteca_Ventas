@@ -30,7 +30,7 @@ namespace Ventas_Application.Services
             CarroLibroValidationDB = _CarroLibroValidationDB;
         }
 
-        public Response CreateCarroLibro(RequestCarroLibro carroLibro)
+        public ResponseGetCarroLibro CreateCarroLibro(RequestCarroLibro carroLibro)
         {
             ValidacionesBaseDatos = new List<string>();
             var ListaErrores = new List<Object>();
@@ -48,11 +48,11 @@ namespace Ventas_Application.Services
 
                 Repository.Add<CarroLibro>(entity);
 
-                return new Response { IsValid = true, entity = "CarroLibro", Id = entity.Id.ToString() };
+                return new ResponseGetCarroLibro { IsValid = true, Libroid = entity.Libroid };
             }
             else ListaErrores.AddRange(ValidacionesBaseDatos);
 
-            return new Response { IsValid = false, Errors = ListaErrores };
+            return new ResponseGetCarroLibro { IsValid = false, Errors = ListaErrores };
 
         }
 

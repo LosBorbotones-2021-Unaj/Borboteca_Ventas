@@ -14,7 +14,6 @@ F:\Borboteca_Ventas_Final\Borboteca_Ventas\Ventas_Domain\bin\Debug\net5.0\Ventas
 F:\Borboteca_Ventas_Final\Borboteca_Ventas\Ventas_Domain\bin\Debug\net5.0\Ventas_Domain.dll
 F:\Borboteca_Ventas_Final\Borboteca_Ventas\Ventas_Domain\bin\Debug\net5.0\ref\Ventas_Domain.dll
 F:\Borboteca_Ventas_Final\Borboteca_Ventas\Ventas_Domain\bin\Debug\net5.0\Ventas_Domain.pdb
-F:\Borboteca_Ventas_Final\Borboteca_Ventas\Ventas_Domain\obj\Debug\net5.0\Ventas_Domain.csproj.AssemblyReference.cache
 F:\Borboteca_Ventas_Final\Borboteca_Ventas\Ventas_Domain\obj\Debug\net5.0\Ventas_Domain.GeneratedMSBuildEditorConfig.editorconfig
 F:\Borboteca_Ventas_Final\Borboteca_Ventas\Ventas_Domain\obj\Debug\net5.0\Ventas_Domain.AssemblyInfoInputs.cache
 F:\Borboteca_Ventas_Final\Borboteca_Ventas\Ventas_Domain\obj\Debug\net5.0\Ventas_Domain.AssemblyInfo.cs

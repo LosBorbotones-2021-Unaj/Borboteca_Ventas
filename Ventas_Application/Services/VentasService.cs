@@ -84,7 +84,7 @@ namespace Ventas_Application.Services
                     entity = new Ventas
                     {
                         Fecha = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day),
-                        Comprobante = "",
+                        Comprobante = Guid.NewGuid().ToString(),
                         estado = true,
                         CarroId = CarroId
                     };
